@@ -152,15 +152,6 @@ namespace ByteDev.Common
             return source.Remove(pos, find.Length).Insert(pos, replace);
         }
 
-        public static bool Contains(this string source, string value, StringComparison stringComparison)
-        {
-            if (string.IsNullOrEmpty(value))
-            {
-                throw new ArgumentException("Value was null or empty.", nameof(value));
-            }
-            return source.IndexOf(value, stringComparison) >= 0;
-        }
-
         public static string Pluralize(this string source, int number)
         {
             if (string.IsNullOrEmpty(source))

@@ -1,110 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E632BF00-926B-43AF-BEC9-EE5CE2F1877B}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ByteDev.Common.UnitTests</RootNamespace>
-    <AssemblyName>ByteDev.Common.UnitTests</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Moq">
-      <HintPath>..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=3.9.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
+    <PackageReference Include="Moq" Version="4.9.0" />
+    <PackageReference Include="NUnit" Version="3.10.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="ArgumentNullOrEmptyExceptionTest.cs" />
-    <Compile Include="Collections\DictionaryExtensionsTest.cs" />
-    <Compile Include="Collections\EnumerableElementSelectionExtensionsTest.cs" />
-    <Compile Include="Collections\EnumerableIsExtensionsTest.cs" />
-    <Compile Include="Collections\EnumerableToExtensionsTest.cs" />
-    <Compile Include="Collections\NameValueCollectionExtensionsTest.cs" />
-    <Compile Include="DisposableExtensionsTest.cs" />
-    <Compile Include="Reflection\AssemblyExtensionsTest.cs" />
-    <Compile Include="Reflection\TypeExtensionsTest.cs" />
-    <Compile Include="Threading\TaskHelperTests.cs" />
-    <Compile Include="Time\DateTimeExtensionsTest.cs" />
-    <Compile Include="DoubleExtensionsTest.cs" />
-    <Compile Include="Encoding\Base64Test.cs" />
-    <Compile Include="Encoding\HexTest.cs" />
-    <Compile Include="EnumExtensionsTest.cs" />
-    <Compile Include="EnumHelperTest.cs" />
-    <Compile Include="GenericExtensionsTest.cs" />
-    <Compile Include="GuidExtensionsTest.cs" />
-    <Compile Include="Collections\EnumerableExtensionsTest.cs" />
-    <Compile Include="Collections\ListExtensionsTest.cs" />
-    <Compile Include="ObjectExtensionsTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RandomExtensionsTest.cs" />
-    <Compile Include="Reflection\ReflectionAttributeExtensionsTest.cs" />
-    <Compile Include="Reflection\ReflectionPropertyExtensionsTest.cs" />
-    <Compile Include="Serialization\Base64\Base64SerializerTest.cs" />
-    <Compile Include="Serialization\Xml\XmlDataSerializerTest.cs" />
-    <Compile Include="StringExtensionsTest.cs" />
-    <Compile Include="StringIsExtensionsTest.cs" />
-    <Compile Include="StringToExtensionsTest.cs" />
-    <Compile Include="Time\TimespanExtensionsTest.cs" />
-    <Compile Include="Time\MonthTest.cs" />
-    <Compile Include="ToStringExtensionsTests.cs" />
-    <Compile Include="UriExtensionsTest.cs" />
-    <Compile Include="UriPathBuilderTest.cs" />
-    <Compile Include="UriQueryStringConverterTest.cs" />
-    <Compile Include="Xml\XElementExtensionsTest.cs" />
-    <Compile Include="Xml\XmlEncoderTest.cs" />
+    <ProjectReference Include="..\ByteDev.Common\ByteDev.Common.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ByteDev.Common\ByteDev.Common.csproj">
-      <Project>{b6a178c6-03f9-4722-b1a1-a771a27ff430}</Project>
-      <Name>ByteDev.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

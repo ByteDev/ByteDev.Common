@@ -381,36 +381,6 @@ namespace ByteDev.Common.UnitTests
         }
 
         [TestFixture]
-        public class Contains
-        {
-            [Test]
-            public void WhenValueIsNull_ThenThrowException()
-            {
-                const string sut = "something";
-
-                Assert.Throws<ArgumentException>(() => sut.Contains(null, StringComparison.InvariantCulture));
-            }
-
-            [Test]
-            public void WhenValueIsEmpty_ThenThrowException()
-            {
-                const string sut = "something";
-
-                Assert.Throws<ArgumentException>(() => sut.Contains(string.Empty, StringComparison.InvariantCulture));
-            }
-
-            [Test]
-            public void WhenSourceContainsValue_AndIgnoreCase_ThenReturnTrue()
-            {
-                const string sut = "John Smith";
-
-                var result = sut.Contains("smith", StringComparison.InvariantCultureIgnoreCase);
-
-                Assert.That(result, Is.True);
-            }
-        }
-
-        [TestFixture]
         public class Obscure
         {
             [Test]

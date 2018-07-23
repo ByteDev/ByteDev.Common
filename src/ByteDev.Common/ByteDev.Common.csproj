@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Description>Set of common .NET utility classes.</Description>
-    <Version>4.1.0</Version>
+    <Version>4.2.0</Version>
     <Authors>Paul Stanley</Authors>
     <Company></Company>
     <PackageTags>common utility</PackageTags>
