@@ -76,4 +76,10 @@ packages/
 #Visual studio
 .vs/
 
+# Any binaries
 !lib/**
+
+# Cake build
+tools/**
+!tools/packages.config
+artifacts/**
