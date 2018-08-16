@@ -80,6 +80,7 @@ packages/
 !lib/**
 
 # Cake build
-tools/**
-!tools/packages.config
+build/tools/**
+!build/
+!build/tools/packages.config
 artifacts/**
