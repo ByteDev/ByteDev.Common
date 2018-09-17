@@ -6,10 +6,7 @@ namespace ByteDev.Common
     {
         public static void DisposeIfNotNull(this IDisposable source)
         {
-            if (source != null)
-            {
-                source.Dispose();
-            }
+            source?.Dispose();
         }
     }
 }
