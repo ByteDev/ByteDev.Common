@@ -7,7 +7,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B5346760
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.Common", "ByteDev.Common\ByteDev.Common.csproj", "{B6A178C6-03F9-4722-B1A1-A771A27FF430}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteDev.Common.UnitTests", "ByteDev.Common.UnitTests\ByteDev.Common.UnitTests.csproj", "{F4541025-C905-4966-9F23-72A109DB1A18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.Common.UnitTests", "ByteDev.Common.UnitTests\ByteDev.Common.UnitTests.csproj", "{F4541025-C905-4966-9F23-72A109DB1A18}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{9F45D8A0-942B-4E53-A356-6E4FF6295F13}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{7153D74C-1247-46B1-A311-D29E123D2316}"
+	ProjectSection(SolutionItems) = preProject
+		..\build\build.cake = ..\build\build.cake
+		..\build\nuget-publish.ps1 = ..\build\nuget-publish.ps1
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

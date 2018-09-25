@@ -1,3 +1,5 @@
+[![NuGet Package](https://img.shields.io/nuget/v/ByteDev.Common.svg)](https://www.nuget.org/packages/ByteDev.Common)
+
 # ByteDev.Common
 
 Common is a collection of generic utility methods.
