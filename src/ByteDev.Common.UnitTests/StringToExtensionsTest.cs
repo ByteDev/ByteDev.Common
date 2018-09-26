@@ -213,7 +213,7 @@ namespace ByteDev.Common.UnitTests
 
                 var result = sut.ToDateTimeOrDefault(defaultDateTime);
 
-                Assert.That(result, Is.EqualTo(expected));
+                Assert.That(result.Value.Year, Is.EqualTo(expected.Year));
             }
 
             [Test]
