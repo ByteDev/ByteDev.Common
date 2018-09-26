@@ -206,10 +206,10 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenHasValidFormat_ThenReturnValueAsDateTime()
             {
-                const string sut = "25/12/2000 12:00";
+                const string sut = "09/12/2000 12:00";
 
                 var defaultDateTime = DateTime.Now;
-                var expected = new DateTime(2000, 12, 25, 12, 0, 0);
+                var expected = new DateTime(2000, 12, 9, 12, 0, 0);
 
                 var result = sut.ToDateTimeOrDefault(defaultDateTime);
 
@@ -220,6 +220,7 @@ namespace ByteDev.Common.UnitTests
             public void WhenHasInvalidFormat_ThenReturnDefaultValue()
             {
                 const string sut = "13/13/2000 12:00";
+
                 var defaultDateTime = DateTime.Now;
 
                 var result = sut.ToDateTimeOrDefault(defaultDateTime);
