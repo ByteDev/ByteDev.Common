@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/github/bytedev/ByteDev.Common?branch=master&svg=true)](https://ci.appveyor.com/project/bytedev/ByteDev.Common/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/github/bytedev/ByteDev.Common?branch=master&svg=true)](https://ci.appveyor.com/project/bytedev/ByteDev-Common/branch/master)
 [![NuGet Package](https://img.shields.io/nuget/v/ByteDev.Common.svg)](https://www.nuget.org/packages/ByteDev.Common)
 
 # ByteDev.Common
