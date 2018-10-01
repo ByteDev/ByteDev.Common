@@ -1,7 +1,8 @@
 ﻿using System;
+using ByteDev.Common.Exceptions;
 using NUnit.Framework;
 
-namespace ByteDev.Common.UnitTests
+namespace ByteDev.Common.UnitTests.Exceptions
 {
     [TestFixture]
     public class ArgumentNullOrEmptyExceptionTest

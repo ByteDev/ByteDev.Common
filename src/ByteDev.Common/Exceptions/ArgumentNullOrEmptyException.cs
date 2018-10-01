@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace ByteDev.Common
+namespace ByteDev.Common.Exceptions
 {
     [Serializable]
     public class ArgumentNullOrEmptyException : ArgumentException

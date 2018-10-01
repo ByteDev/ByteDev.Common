@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ByteDev.Common.Exceptions;
 using NUnit.Framework;
 
 namespace ByteDev.Common.UnitTests
