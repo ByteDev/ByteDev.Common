@@ -31,13 +31,20 @@ namespace ByteDev.Common.UnitTests.Exceptions
                 Assert.That(sut.Message, Is.EqualTo("Unexpected value 'Red' for enum 'Color'."));
             }
 
+            [Test]
+            public void WhenMessageSpecified_ThenSetMessage()
+            {
+                var sut = new UnexpectedEnumValueException<Color>("some message.");
+
+                Assert.That(sut.Message, Is.EqualTo("some message."));
+            }
 
             [Test]
             public void WhenMessageAndInnerExSpecified_ThenSetMessageAndInnerEx()
             {
                 var innerException = new Exception();
 
-                var sut = new ArgumentNullOrEmptyException("some message.", innerException);
+                var sut = new UnexpectedEnumValueException<Color>("some message.", innerException);
 
                 Assert.That(sut.Message, Is.EqualTo("some message."));
                 Assert.That(sut.InnerException, Is.SameAs(innerException));
