@@ -28,6 +28,7 @@ Common has classes covering general extensions such as String, Enum, Guid, Uri, 
 As well as functionality covering the following namespaces:
 - Collections
 - Encoding
+- Exceptions
 - Reflection
 - Serialization
 - Threading
