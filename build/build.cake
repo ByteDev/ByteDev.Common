@@ -1,4 +1,6 @@
+#addin nuget:?package=Cake.Incubator&version=3.0.0
 #tool "nuget:?package=NUnit.Runners&version=2.6.4"
+
 
 var nugetSources = new[] {"https://api.nuget.org/v3/index.json"};
 
@@ -70,8 +72,11 @@ Task("CreateNuGetPackages")
     .IsDependentOn("UnitTests")
     .Does(() =>
     {
+		var nugetVersion = GetNuGetVersion();
+
         var settings = new DotNetCorePackSettings()
 		{
+			ArgumentCustomization = args => args.Append("/p:Version=" + nugetVersion),
 			Configuration = configuration,
 			OutputDirectory = nugetDirectory
 		};
@@ -97,4 +102,19 @@ string GetConfiguration()
 	return EnvironmentVariable("Configuration") != null ? 
 		EnvironmentVariable("Configuration") : 
 		"Release";
+}
+
+string GetNuGetVersion()
+{
+	var settings = new GitVersionSettings
+	{
+		OutputType = GitVersionOutput.Json
+	};
+
+	GitVersion versionInfo = GitVersion(settings);
+
+	Information("GitVersion:");
+	Information(versionInfo.Dump<GitVersion>());
+
+	return versionInfo.NuGetVersion;
 }
