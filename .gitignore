@@ -1,14 +1,11 @@
-git-reinit.bat
-git-reinit-github.bat
-
-#OS junk files
+# OS junk files
 [Tt]humbs.db
 *.DS_Store
 
-#Rider
+# Rider
 *.idea
 
-#Visual Studio files
+# Visual Studio files
 *.[Oo]bj
 *.user
 *.aps
@@ -37,49 +34,49 @@ ipch/
 [Rr]elease*/
 Ankh.NoLoad
 
-#MonoDevelop
+# MonoDevelop
 *.pidb
 *.userprefs
 
-#Tooling
+# Tooling
 _ReSharper*/
 *.resharper
 [Tt]est[Rr]esult*
 *.sass-cache
 
-#Project files
+# Project files
 [Bb]uild/
 
-#Subversion files
+# Subversion files
 .svn
 
-# Office Temp Files
+# Office Temp files
 ~$*
 
-# vim Temp Files
+# Vim Temp files
 *~
 
-#NuGet
+# NuGet
 packages/
 *.nupkg
 
-#ncrunch
+# NCrunch
 *ncrunch*
 *crunch*.local.xml
 
-# visual studio database projects
+# Visual Studio database projects
 *.dbmdl
 
-#Test files
+# Test files
 *.testsettings
 
-#Visual studio
+# Visual studio
 .vs/
 
-# Any binaries
+# Any libraries
 !lib/**
 
-# Cake build
+# Cake build files
 build/tools/**
 !build/
 !build/tools/packages.config
