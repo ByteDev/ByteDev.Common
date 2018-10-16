@@ -30,11 +30,7 @@ namespace ByteDev.Common
         {
             var description = GetDescription(source);
 
-            if (description == null)
-            {
-                return source.ToString();
-            }
-            return description;
+            return description ?? source.ToString();
         }
     }
 }
