@@ -18,15 +18,12 @@ Information("Configurtion: " + configuration);
 
 Task("Clean")
     .Does(() =>
-{
-    CleanDirectory(artifactsDirectory);
+	{
+		CleanDirectory(artifactsDirectory);
 	
-	var binDirs = GetDirectories("../src/**/bin");
-	var objDirs = GetDirectories("../src/**/obj");
-
-	CleanDirectories(binDirs);
-	CleanDirectories(objDirs);
-});
+		CleanBinDirectories();
+		CleanObjDirectories();
+	});
 
 Task("Restore")
     .IsDependentOn("Clean")
@@ -44,30 +41,25 @@ Task("Build")
 	.IsDependentOn("Restore")
     .Does(() =>
 	{	
-        DotNetCoreBuild(
-            solutionFilePath,
-            new DotNetCoreBuildSettings()
-            {
-                Configuration = configuration
-            });
+		var settings = new DotNetCoreBuildSettings()
+        {
+            Configuration = configuration
+        };
+
+        DotNetCoreBuild(solutionFilePath, settings);
 	});
 
 Task("UnitTests")
     .IsDependentOn("Build")
     .Does(() =>
 	{
-		var projects = GetFiles("../src/*.UnitTests/**/*.csproj");
-		
-		foreach(var project in projects)
+		var settings = new DotNetCoreTestSettings()
 		{
-			DotNetCoreTest(
-				project.FullPath,
-				new DotNetCoreTestSettings()
-				{
-					Configuration = configuration,
-					NoBuild = true
-				});
-		}
+			Configuration = configuration,
+			NoBuild = true
+		};
+
+		DotNetCoreUnitTests(settings);
 	});
 	
 Task("CreateNuGetPackages")
