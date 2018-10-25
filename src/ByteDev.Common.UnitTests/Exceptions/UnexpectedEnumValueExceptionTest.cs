@@ -7,7 +7,7 @@ namespace ByteDev.Common.UnitTests.Exceptions
     [TestFixture]
     public class UnexpectedEnumValueExceptionTest
     {
-        private enum Color
+        public enum Color
         {
             Red
         }
@@ -20,7 +20,7 @@ namespace ByteDev.Common.UnitTests.Exceptions
             {
                 var sut = new UnexpectedEnumValueException<Color>();
 
-                Assert.That(sut.Message, Is.EqualTo("Unexpected value for enum 'Color'."));
+                Assert.That(sut.Message, Is.EqualTo("Unexpected value for enum 'ByteDev.Common.UnitTests.Exceptions.UnexpectedEnumValueExceptionTest+Color'."));
             }
 
             [Test]
@@ -28,7 +28,7 @@ namespace ByteDev.Common.UnitTests.Exceptions
             {
                 var sut = new UnexpectedEnumValueException<Color>(Color.Red);
 
-                Assert.That(sut.Message, Is.EqualTo("Unexpected value 'Red' for enum 'Color'."));
+                Assert.That(sut.Message, Is.EqualTo("Unexpected value 'Red' for enum 'ByteDev.Common.UnitTests.Exceptions.UnexpectedEnumValueExceptionTest+Color'."));
             }
 
             [Test]

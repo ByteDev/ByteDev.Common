@@ -7,7 +7,7 @@ namespace ByteDev.Common.Exceptions
     public class UnexpectedEnumValueException<TEnum> : Exception
     {
         public UnexpectedEnumValueException()
-            :base($"Unexpected value for enum '{typeof(TEnum).Name}'.")
+            :base($"Unexpected value for enum '{typeof(TEnum).FullName}'.")
         {
         }
 
@@ -22,7 +22,7 @@ namespace ByteDev.Common.Exceptions
         }
 
         public UnexpectedEnumValueException(TEnum enumValue) 
-            : base($"Unexpected value '{enumValue}' for enum '{typeof(TEnum).Name}'.")
+            : base($"Unexpected value '{enumValue}' for enum '{typeof(TEnum).FullName}'.")
         {
         }
 

@@ -1,6 +1,6 @@
 #addin nuget:?package=Cake.Incubator&version=3.0.0
 #tool "nuget:?package=NUnit.Runners&version=2.6.4"
-
+#load "ByteDev.Common.cake"
 
 var nugetSources = new[] {"https://api.nuget.org/v3/index.json"};
 
@@ -11,7 +11,9 @@ var solutionFilePath = "../src/ByteDev.Common.sln";
 var artifactsDirectory = Directory("../artifacts");
 var nugetDirectory = artifactsDirectory + Directory("NuGet");
 	
-var configuration = GetConfiguration();
+var configuration = GetBuildConfiguration();
+
+Information("Configurtion: " + configuration);
 	
 
 Task("Clean")
@@ -89,32 +91,3 @@ Task("Default")
     .IsDependentOn("CreateNuGetPackages");
 
 RunTarget(target);
-
-// -----------------------
-
-string GetConfiguration()
-{
-	if(HasArgument("Configuration"))
-	{
-		return Argument<string>("Configuration");
-	}
-
-	return EnvironmentVariable("Configuration") != null ? 
-		EnvironmentVariable("Configuration") : 
-		"Release";
-}
-
-string GetNuGetVersion()
-{
-	var settings = new GitVersionSettings
-	{
-		OutputType = GitVersionOutput.Json
-	};
-
-	GitVersion versionInfo = GitVersion(settings);
-
-	Information("GitVersion:");
-	Information(versionInfo.Dump<GitVersion>());
-
-	return versionInfo.NuGetVersion;
-}
