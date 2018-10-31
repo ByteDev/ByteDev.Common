@@ -7,6 +7,95 @@ namespace ByteDev.Common.UnitTests
     public class StringExtensionsTest
     {
         [TestFixture]
+        public class RemoveStartsWith : StringExtensionsTest
+        {
+            private const string Sut = "My name is John";
+
+            [Test]
+            public void WhenValueIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => Sut.RemoveStartsWith(null));
+            }
+
+            [Test]
+            public void WhenValueIsEmpty_ThenReturnSource()
+            {
+                var result = Sut.RemoveStartsWith(string.Empty);
+
+                Assert.That(result, Is.EqualTo(Sut));
+            }
+
+            [Test]
+            public void WhenDoesNotStartWithValue_ThenReturnSource()
+            {
+                var result = Sut.RemoveStartsWith("name");
+
+                Assert.That(result, Is.EqualTo(Sut));
+            }
+
+            [Test]
+            public void WhenValueIsLongerThanSource_ThenReturnSource()
+            {
+                var result = Sut.RemoveStartsWith(Sut + " Smith");
+
+                Assert.That(result, Is.EqualTo(Sut));
+            }
+
+            [Test]
+            public void WhenStartsWithValue_ThenRemoveStartingValue()
+            {
+                var result = Sut.RemoveStartsWith("My");
+
+                Assert.That(result, Is.EqualTo(" name is John"));
+            }
+        }
+
+        [TestFixture]
+        public class RemoveEndsWith : StringExtensionsTest
+        {
+            private const string Sut = "My name is John";
+
+            [Test]
+            public void WhenValueIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => Sut.RemoveEndsWith(null));
+            }
+
+            [Test]
+            public void WhenValueIsEmpty_ThenReturnSource()
+            {
+                var result = Sut.RemoveEndsWith(string.Empty);
+
+                Assert.That(result, Is.EqualTo(Sut));
+            }
+
+            [Test]
+            public void WhenDoesNotEndWithValue_ThenReturnSource()
+            {
+                var result = Sut.RemoveEndsWith("name");
+
+                Assert.That(result, Is.EqualTo(Sut));
+            }
+
+            [Test]
+            public void WhenValueIsLongerThanSource_ThenReturnSource()
+            {
+                var result = Sut.RemoveEndsWith(Sut + " Smith");
+
+                Assert.That(result, Is.EqualTo(Sut));
+            }
+
+            [Test]
+            public void WhenEndsWithValue_ThenRemoveEndingValue()
+            {
+                var result = Sut.RemoveEndsWith("John");
+
+                Assert.That(result, Is.EqualTo("My name is "));
+            }
+        }
+
+
+        [TestFixture]
         public class ReplaceToken : StringExtensionsTest
         {
             [Test]

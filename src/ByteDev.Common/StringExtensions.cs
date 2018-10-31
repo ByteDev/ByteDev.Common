@@ -5,6 +5,32 @@ namespace ByteDev.Common
 {
     public static class StringExtensions
     {
+        public static string RemoveStartsWith(this string source, string value)
+        {
+            if(value == null)
+                throw new ArgumentNullException(nameof(value));
+            if (value == string.Empty)
+                return source;
+
+            if (source.StartsWith(value))
+                return source.Substring(value.Length);
+
+            return source;
+        }
+
+        public static string RemoveEndsWith(this string source, string value)
+        {
+            if (value == null)
+                throw new ArgumentNullException(nameof(value));
+            if (value == string.Empty)
+                return source;
+
+            if (source.EndsWith(value))
+                return source.Substring(0, source.Length - value.Length);
+
+            return source;
+        }
+
         public static string ReplaceToken(this string source, string tokenName, object value)
         {
             if (source == null)
@@ -228,3 +254,4 @@ namespace ByteDev.Common
         } 
     }
 }
+
