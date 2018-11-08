@@ -48,7 +48,7 @@ namespace ByteDev.Common
             }
             else
             {
-                nameValues.AddOrModify(name, value);
+                nameValues.AddOrUpdate(name, value);
             }
 
             uriBuilder.Query = nameValues.ToString();

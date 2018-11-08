@@ -25,7 +25,7 @@ namespace ByteDev.Common
 
         public UriPathBuilder AddOrModifyQueryStringParam(string name, string value)
         {
-            _nameValues.AddOrModify(name, value);
+            _nameValues.AddOrUpdate(name, value);
             return this;
         }
 

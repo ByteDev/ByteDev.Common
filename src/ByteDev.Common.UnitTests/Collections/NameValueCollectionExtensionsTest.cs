@@ -8,14 +8,14 @@ namespace ByteDev.Common.UnitTests.Collections
     public class NameValueCollectionExtensionsTest
     {
         [TestFixture]
-        public class AddOrModify
+        public class AddOrUpdate
         {
             [Test]
             public void WhenCollectionDoesNotContainName_ThenAddPair()
             {
                 var sut = new NameValueCollection();
 
-                sut.AddOrModify("name1", "value1");
+                sut.AddOrUpdate("name1", "value1");
 
                 Assert.That(sut["name1"], Is.EqualTo("value1"));
             }
@@ -30,7 +30,7 @@ namespace ByteDev.Common.UnitTests.Collections
                     {"name1", "value1"}
                 };
 
-                sut.AddOrModify("name1", expected);
+                sut.AddOrUpdate("name1", expected);
 
                 Assert.That(sut["name1"], Is.EqualTo(expected));
             }

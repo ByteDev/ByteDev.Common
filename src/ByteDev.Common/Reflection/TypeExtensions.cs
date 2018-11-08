@@ -1,24 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
 namespace ByteDev.Common.Reflection
 {
     public static class TypeExtensions
     {
-        public static IEnumerable<FieldInfo> GetConstants(this Type source)
+        internal static PropertyInfo GetPropertyInfoOrThrow(this Type source, string propertyName)
         {
-            var fieldInfos = source.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
+            var propertyInfo = source.GetProperty(propertyName);
 
-            return fieldInfos.Where(fi => fi.IsLiteral && !fi.IsInitOnly);
+            if (propertyInfo == null)
+            {
+                ThrowTypeDoesNotHaveNamedProperty(source, propertyName);
+            }
+            return propertyInfo;
         }
 
-        public static IEnumerable<T> GetConstantsValues<T>(this Type source) where T : class
+        internal static PropertyInfo GetStaticPropertyInfoOrThrow(this Type source, string propertyName)
         {
-            var fieldInfos = GetConstants(source);
+            var propertyInfo = source.GetProperty(propertyName, BindingFlags.Public | BindingFlags.Static);
 
-            return fieldInfos.Select(fi => fi.GetRawConstantValue() as T);
+            if (propertyInfo == null)
+            {
+                ThrowTypeDoesNotHaveNamedProperty(source, propertyName);
+            }
+            return propertyInfo;
+        }
+
+        private static void ThrowTypeDoesNotHaveNamedProperty(Type source, string propertyName)
+        {
+            throw new InvalidOperationException($"Type '{source.Name}' has no property called '{propertyName}'.");
         }
     }
 }

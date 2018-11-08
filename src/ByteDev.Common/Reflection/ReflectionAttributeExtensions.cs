@@ -6,6 +6,16 @@ namespace ByteDev.Common.Reflection
 {
     public static class ReflectionAttributeExtensions
     {
+        public static bool HasAttribute(this Type type, Type attributeType)
+        {
+            return type.GetTypeInfo().IsDefined(attributeType, true);
+        }
+
+        public static bool HasAttribute<T>(this Type type, Func<T, bool> predicate) where T : Attribute
+        {
+            return type.GetTypeInfo().GetCustomAttributes<T>(true).Any(predicate);
+        }
+
         public static bool HasAttribute<TAttribute>(this object source) where TAttribute : Attribute
         {
             var memberInfo = source as MemberInfo;

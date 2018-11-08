@@ -5,7 +5,7 @@ namespace ByteDev.Common.Collections
 {
     public static class NameValueCollectionExtensions
     {
-        public static void AddOrModify(this NameValueCollection nameValues, string name, string value)
+        public static void AddOrUpdate(this NameValueCollection nameValues, string name, string value)
         {
             if (nameValues[name] == null)
             {
