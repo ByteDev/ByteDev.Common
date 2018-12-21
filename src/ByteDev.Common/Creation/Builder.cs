@@ -20,7 +20,7 @@ namespace ByteDev.Common.Creation
 
         public virtual TEntity Build()
         {
-            return MutateItem(CreateEntity());
+            return ApplyMutations(CreateEntity());
         }
 
         protected abstract TEntity CreateEntity();
@@ -31,7 +31,7 @@ namespace ByteDev.Common.Creation
             return this as TBuilder;
         }
 
-        private TEntity MutateItem(TEntity item)
+        private TEntity ApplyMutations(TEntity item)
         {
             _mutations.ForEach(action => action(item));
             return item;
