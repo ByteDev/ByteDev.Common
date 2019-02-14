@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Reflection;
 using System.Web;
 using ByteDev.Common.Collections;
 
@@ -54,6 +56,32 @@ namespace ByteDev.Common
             uriBuilder.Query = nameValues.ToString();
             
             return uriBuilder.Uri;
+        }
+
+        public static Uri AddOrModifyQueryStringParams(this Uri source, object obj)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            if(obj == null)
+                throw new ArgumentNullException(nameof(obj));
+
+            var nameValues = obj.GetType().GetRuntimeProperties()
+                .Where(p => p.GetValue(obj, null) != null)
+                .Select(p => new
+                {
+                    Name = p.Name,
+                    Value = p.GetValue(obj, null).ToString()
+                });
+
+            var uri = source;
+
+            foreach (var nameValue in nameValues)
+            {
+                uri = AddOrModifyQueryStringParam(uri, nameValue.Name, nameValue.Value);
+            }
+
+            return uri;
         }
 
         public static Uri RemoveQueryStringParam(this Uri source, string name)
