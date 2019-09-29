@@ -12,12 +12,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{9F45D8A0-942B-4E53-A356-6E4FF6295F13}"
 	ProjectSection(SolutionItems) = preProject
 		..\README.md = ..\README.md
+		..\RELEASE-NOTES.md = ..\RELEASE-NOTES.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{7153D74C-1247-46B1-A311-D29E123D2316}"
 	ProjectSection(SolutionItems) = preProject
 		..\build\build.cake = ..\build\build.cake
 		..\build\ByteDev.Common.cake = ..\build\ByteDev.Common.cake
+		ByteDev.Common.nuspec = ByteDev.Common.nuspec
 		..\build\nuget-publish.ps1 = ..\build\nuget-publish.ps1
 	EndProjectSection
 EndProject

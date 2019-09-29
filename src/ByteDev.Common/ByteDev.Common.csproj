@@ -5,7 +5,10 @@
     <Description>Set of common .NET utility classes.</Description>
     <Authors>Paul Stanley</Authors>
     <Company></Company>
-    <PackageTags>common utility</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ByteDev.Collections" Version="1.0.0" />
+  </ItemGroup>
 
 </Project>

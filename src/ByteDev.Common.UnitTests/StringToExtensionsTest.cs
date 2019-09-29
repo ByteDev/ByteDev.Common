@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using ByteDev.Common.Collections;
+using ByteDev.Collections;
 using NUnit.Framework;
 
 namespace ByteDev.Common.UnitTests

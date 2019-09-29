@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Reflection;
 using System.Web;
-using ByteDev.Common.Collections;
+using ByteDev.Collections;
 
 namespace ByteDev.Common
 {

@@ -69,14 +69,13 @@ Task("CreateNuGetPackages")
     {
 		var nugetVersion = GetNuGetVersion();
 
-        var settings = new DotNetCorePackSettings()
+		var nugetSettings = new NuGetPackSettings 
 		{
-			ArgumentCustomization = args => args.Append("/p:Version=" + nugetVersion),
-			Configuration = configuration,
+			Version = nugetVersion,
 			OutputDirectory = nugetDirectory
 		};
                 
-		DotNetCorePack("../src/ByteDev.Common/ByteDev.Common.csproj", settings);
+		NuGetPack("../src/ByteDev.Common.nuspec", nugetSettings);
     });
 
    
