@@ -26,7 +26,6 @@ The repo can be cloned from git bash:
 Common has classes covering general extensions such as String, Enum, Guid, Uri, etc.  
 
 As well as functionality covering the following namespaces:
-- Collections
 - Encoding
 - Exceptions
 - Reflection
@@ -34,3 +33,5 @@ As well as functionality covering the following namespaces:
 - Threading
 - Time
 - Xml
+
+As of version 6.0.0 the Collections namespace has been moved to package: ByteDev.Collections.
