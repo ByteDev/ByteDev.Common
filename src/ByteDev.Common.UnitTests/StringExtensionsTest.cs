@@ -7,6 +7,30 @@ namespace ByteDev.Common.UnitTests
     public class StringExtensionsTest
     {
         [TestFixture]
+        public class SafeLength : StringExtensionsTest
+        {
+            [Test]
+            public void WhenIsNull_ThenReturnZero()
+            {
+                string sut = null;
+
+                var result = sut.SafeLength();
+
+                Assert.That(result, Is.EqualTo(0));
+            }
+
+            [Test]
+            public void WhenIsNotNull_ThenReturnLength()
+            {
+                var sut = "123";
+
+                var result = sut.SafeLength();
+
+                Assert.That(result, Is.EqualTo(3));
+            }
+        }
+
+        [TestFixture]
         public class RemoveStartsWith : StringExtensionsTest
         {
             private const string Sut = "My name is John";

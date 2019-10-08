@@ -5,10 +5,21 @@ namespace ByteDev.Common
 {
     public static class StringExtensions
     {
+        /// <summary>
+        /// Returns the length of a string or zero if it is null.
+        /// </summary>
+        /// <param name="source">The string to return the length on.</param>
+        /// <returns>Length of the string. Zero if the string is null.</returns>
+        public static int SafeLength(this string source)
+        {
+            return source?.Length ?? 0;
+        }
+
         public static string RemoveStartsWith(this string source, string value)
         {
             if(value == null)
                 throw new ArgumentNullException(nameof(value));
+
             if (value == string.Empty)
                 return source;
 
@@ -22,6 +33,7 @@ namespace ByteDev.Common
         {
             if (value == null)
                 throw new ArgumentNullException(nameof(value));
+
             if (value == string.Empty)
                 return source;
 
