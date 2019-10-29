@@ -6,7 +6,7 @@ namespace ByteDev.Common
 {
     internal static class NameValueCollectionExtensions
     {
-        public static void AddOrUpdate(this NameValueCollection source, string key, string value)
+        internal static void AddOrUpdate(this NameValueCollection source, string key, string value)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
@@ -17,7 +17,7 @@ namespace ByteDev.Common
                 source.Add(key, value);
         }
 
-        public static bool ContainsKey(this NameValueCollection source, string key)
+        private static bool ContainsKey(this NameValueCollection source, string key)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));

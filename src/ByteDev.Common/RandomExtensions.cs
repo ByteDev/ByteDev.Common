@@ -4,17 +4,32 @@ namespace ByteDev.Common
 {
     public static class RandomExtensions
     {
+        /// <summary>
+        /// Randomly return either true or false.
+        /// </summary>
+        /// <param name="source">Random object to perform the operation on.</param>
+        /// <returns>True or false.</returns>
         public static bool CoinToss(this Random source)
         {
             return source.Next(2) == 0;
         }
 
-        public static T OneOf<T>(this Random source, params T[] options)
+        /// <summary>
+        /// Randomly returns one of the items from the supplied list of options.
+        /// </summary>
+        /// <typeparam name="TOptions">Type of options in the list.</typeparam>
+        /// <param name="source">Random object to perform the operation on.</param>
+        /// <param name="options">The list of options.</param>
+        /// <returns>One of the options randomly selected.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="options" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentException"><paramref name="options" /> is empty.</exception>
+        public static TOptions OneOf<TOptions>(this Random source, params TOptions[] options)
         {
             if(options == null)
                 throw new ArgumentNullException(nameof(options));
+            
             if(options.Length < 1)
-                throw new ArgumentException("Options was less than one.");
+                throw new ArgumentException($"Argument {nameof(options)} was empty.");
 
             return options[source.Next(options.Length)];
         }

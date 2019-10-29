@@ -18,6 +18,14 @@ namespace ByteDev.Common.UnitTests
             }
 
             [Test]
+            public void WhenGuidIsDefault_ThenReturnTrue()
+            {
+                var id = default(Guid);
+
+                Assert.IsTrue(id.IsEmpty());
+            }
+
+            [Test]
             public void WhenGuidIsNotEmpty_ThenReturnFalse()
             {
                 var id = Guid.NewGuid();
@@ -41,10 +49,12 @@ namespace ByteDev.Common.UnitTests
             public void WhenGuidIsNotEmpty_ThenReturnDifferentGuid()
             {
                 var id = Guid.NewGuid();
+                var originalId = id;
 
                 var result = id.Comb();
 
-                Assert.That(id, Is.Not.EqualTo(result));
+                Assert.That(result, Is.Not.EqualTo(id));
+                Assert.That(result.ToString().Substring(0, 20), Is.EqualTo(originalId.ToString().Substring(0, 20)));
             }
         }
     }

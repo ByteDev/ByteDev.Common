@@ -8,42 +8,33 @@ namespace ByteDev.Common
     public static class ObjectExtensions
     {
         /// <summary>
-        /// Perform a deep Copy of the source object
-        /// Reference Article http://www.codeproject.com/KB/tips/SerializedObjectCloner.aspx
+        /// Performs a deep copy of the serializable source object. 
         /// </summary>
-        /// <typeparam name="T">The type of object being copied</typeparam>
-        /// <param name="source">The object instance to copy</param>
-        /// <returns>The cloned object</returns>
-        public static T CloneSerializable<T>(this T source)
+        /// <typeparam name="TSource">The type of object being copied.</typeparam>
+        /// <param name="source">The object instance to deep clone.</param>
+        /// <returns>The cloned object.</returns>
+        /// <exception cref="T:System.ArgumentException"><paramref name="source" /> must be serializable.</exception>
+        public static TSource CloneSerializable<TSource>(this TSource source)
         {
-            CheckTypeIsSerializable<T>();
+            if (!typeof(TSource).IsSerializable)
+                throw new ArgumentException("The type must be serializable.");
 
             if (IsReferencingNull(source))
-            {
-                return default(T);
-            }
-
+                return default(TSource);
+            
             IFormatter formatter = new BinaryFormatter();
-            Stream stream = new MemoryStream();
-            using (stream)
+            
+            using (Stream stream = new MemoryStream())
             {
                 formatter.Serialize(stream, source);
                 stream.Seek(0, SeekOrigin.Begin);
-                return (T)formatter.Deserialize(stream);
+                return (TSource)formatter.Deserialize(stream);
             }
         }
 
-        private static bool IsReferencingNull<T>(T source)
+        private static bool IsReferencingNull<TSource>(TSource source)
         {
             return ReferenceEquals(source, null);
-        }
-
-        private static void CheckTypeIsSerializable<T>()
-        {
-            if (!typeof(T).IsSerializable)
-            {
-                throw new ArgumentException("The type must be serializable.");
-            }
         }
     }
 }

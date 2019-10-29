@@ -14,29 +14,37 @@ namespace ByteDev.Common.UnitTests
             {
                 var result = new Random().CoinToss();
 
-                Assert.That(result || !result, Is.True);    // bit daft, but only way to test
+                Assert.That(result || !result, Is.True); // bit daft, but only way to test
             }
         }
 
         [TestFixture]
         public class OneOf
         {
+            private Random _sut;
+
+            [SetUp]
+            public void SetUp()
+            {
+                _sut = new Random();
+            }
+
             [Test]
             public void WhenNullOptions_ThenThrowException()
             {
-                Assert.Throws<ArgumentNullException>(() => new Random().OneOf(null as string[]));
+                Assert.Throws<ArgumentNullException>(() => _sut.OneOf(null as string[]));
             }
 
             [Test]
             public void WhenZeroExist_ThenThrowException()
             {
-                Assert.Throws<ArgumentException>(() => new Random().OneOf(new string[0]));
+                Assert.Throws<ArgumentException>(() => _sut.OneOf(new string[0]));
             }
 
             [Test]
             public void WhenOneExist_ThenReturnOption()
             {
-                var result = new Random().OneOf("John");
+                var result = _sut.OneOf("John");
 
                 Assert.That(result, Is.EqualTo("John"));
             }
@@ -44,8 +52,8 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenThreeExist_ThenReturnOneOfThreeOptions()
             {
-                var result = new Random().OneOf("John", "Peter", "Luke");
-                
+                var result = _sut.OneOf("John", "Peter", "Luke");
+
                 Assert.IsTrue(result == "John" || result == "Peter" || result == "Luke");
             }
         }

@@ -26,15 +26,43 @@ namespace ByteDev.Common.UnitTests
             return true;
         }
 
+        private void MyPrivateMethodReturnVoid()
+        {
+        }
+
         [TestFixture]
         public class InvokeMethod : ObjectExtensionsTest
         {
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                object sut = null;
+
+                Assert.Throws<ArgumentNullException>(() => sut.InvokeMethod("MyProtectedInternalMethod"));
+            }
+
             [Test]
             public void WhenMethodNameIsNull_ThenThrowException()
             {
                 var sut = CreateSut();
 
                 Assert.Throws<ArgumentNullException>(() => sut.InvokeMethod(null));
+            }
+
+            [Test]
+            public void WhenMethodNameIsEmpty_ThenThrowException()
+            {
+                var sut = CreateSut();
+
+                Assert.Throws<ArgumentException>(() => sut.InvokeMethod(string.Empty));
+            }
+
+            [Test]
+            public void WhenMethodNameDoesNotExist_ThenThrowException()
+            {
+                var sut = CreateSut();
+
+                Assert.Throws<ArgumentException>(() => sut.InvokeMethod("ThisMethodDoesNotExist"));
             }
 
             [Test]
@@ -78,11 +106,13 @@ namespace ByteDev.Common.UnitTests
             }
 
             [Test]
-            public void WhenMethodNameIsEmpty_ThenThrowException()
+            public void WhenInvokingExistingMethodWithVoidReturn_ThenReturnNull()
             {
                 var sut = CreateSut();
 
-                Assert.Throws<ArgumentException>(() => sut.InvokeMethod(string.Empty));
+                var result = sut.InvokeMethod("MyPrivateMethodReturnVoid");
+
+                Assert.That(result, Is.Null);
             }
 
             [Test]
@@ -103,7 +133,23 @@ namespace ByteDev.Common.UnitTests
         public class In
         {
             [Test]
-            public void WhenStringContainsOneOfListItems_ThenReturnTrue()
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                string sut = null;
+
+                Assert.Throws<ArgumentNullException>(() => sut.In("John"));
+            }
+
+            [Test]
+            public void WhenListIsNull_ThenThrowException()
+            {
+                const string sut = "John";
+
+                Assert.Throws<ArgumentNullException>(() => sut.In(null));
+            }
+
+            [Test]
+            public void WhenSourceIsContainedInList_ThenReturnTrue()
             {
                 const string sut = "John";
 
@@ -113,7 +159,7 @@ namespace ByteDev.Common.UnitTests
             }
 
             [Test]
-            public void WhenStringDoesNotContainAnyListItems_ThenReturnFalse()
+            public void WhenSourceIsNotContainedInList_ThenReturnFalse()
             {
                 const string sut = "John Smith";
 
