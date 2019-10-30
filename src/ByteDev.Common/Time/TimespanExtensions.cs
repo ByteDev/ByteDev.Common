@@ -2,8 +2,16 @@
 
 namespace ByteDev.Common.Time
 {
+    /// <summary>
+    /// Extension methods for <see cref="T:System.TimeSpan" />.
+    /// </summary>
     public static class TimespanExtensions
     {
+        /// <summary>
+        /// Returns a text approximate representation of the <see cref="T:System.TimeSpan" />. 
+        /// </summary>
+        /// <param name="source">The <see cref="T:System.TimeSpan" /> to get the approximate text from.</param>
+        /// <returns>A text approximate representation of the <see cref="T:System.TimeSpan" />.</returns>
         public static string ToApproxFormat(this TimeSpan source)
         {
             if (source.Days > 0)

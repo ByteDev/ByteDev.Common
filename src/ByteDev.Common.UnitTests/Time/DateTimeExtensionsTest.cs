@@ -13,8 +13,11 @@ namespace ByteDev.Common.UnitTests.Time
             [Test]
             public void WhenMillisecondsSpecified_ThenSetMillisecondsZero()
             {
-                var result = new DateTime(2000, 1, 10, 12, 20, 30, 99).TruncateToSecond();
+                var sut = new DateTime(2000, 1, 10, 12, 20, 30, 99);
 
+                var result = sut.TruncateToSecond();
+
+                Assert.That(result.Second, Is.EqualTo(30));
                 Assert.That(result.Millisecond, Is.EqualTo(0));
             }
         }
@@ -25,8 +28,11 @@ namespace ByteDev.Common.UnitTests.Time
             [Test]
             public void WhenSecondsSpecified_ThenSetSecondsToZero()
             {
-                var result = new DateTime(2000, 1, 10, 12, 20, 30, 99).TruncateToMinute();
+                var sut = new DateTime(2000, 1, 10, 12, 20, 30, 99);
 
+                var result = sut.TruncateToMinute();
+
+                Assert.That(result.Minute, Is.EqualTo(20));
                 Assert.That(result.Second, Is.EqualTo(0));
                 Assert.That(result.Millisecond, Is.EqualTo(0));
             }
@@ -38,8 +44,11 @@ namespace ByteDev.Common.UnitTests.Time
             [Test]
             public void WhenMinutesSpecified_ThenSetMinutesToZero()
             {
-                var result = new DateTime(2000, 1, 10, 12, 20, 30, 99).TruncateToHour();
+                var sut = new DateTime(2000, 1, 10, 12, 20, 30, 99);
 
+                var result = sut.TruncateToHour();
+
+                Assert.That(result.Hour, Is.EqualTo(12));
                 Assert.That(result.Minute, Is.EqualTo(0));
                 Assert.That(result.Second, Is.EqualTo(0));
                 Assert.That(result.Millisecond, Is.EqualTo(0));
@@ -47,43 +56,47 @@ namespace ByteDev.Common.UnitTests.Time
         }
 
         [TestFixture]
-        public class GetDaySuffix
+        public class GetDayAsOrdinal
         {
             [Test]
-            [TestCase(1, ExpectedResult = "st")]
-            [TestCase(2, ExpectedResult = "nd")]
-            [TestCase(3, ExpectedResult = "rd")]
-            [TestCase(4, ExpectedResult = "th")]
-            [TestCase(5, ExpectedResult = "th")]
-            [TestCase(6, ExpectedResult = "th")]
-            [TestCase(7, ExpectedResult = "th")]
-            [TestCase(8, ExpectedResult = "th")]
-            [TestCase(9, ExpectedResult = "th")]
-            [TestCase(10, ExpectedResult = "th")]
-            [TestCase(11, ExpectedResult = "th")]
-            [TestCase(12, ExpectedResult = "th")]
-            [TestCase(13, ExpectedResult = "th")]
-            [TestCase(14, ExpectedResult = "th")]
-            [TestCase(15, ExpectedResult = "th")]
-            [TestCase(16, ExpectedResult = "th")]
-            [TestCase(17, ExpectedResult = "th")]
-            [TestCase(18, ExpectedResult = "th")]
-            [TestCase(19, ExpectedResult = "th")]
-            [TestCase(20, ExpectedResult = "th")]
-            [TestCase(21, ExpectedResult = "st")]
-            [TestCase(22, ExpectedResult = "nd")]
-            [TestCase(23, ExpectedResult = "rd")]
-            [TestCase(24, ExpectedResult = "th")]
-            [TestCase(25, ExpectedResult = "th")]
-            [TestCase(26, ExpectedResult = "th")]
-            [TestCase(27, ExpectedResult = "th")]
-            [TestCase(28, ExpectedResult = "th")]
-            [TestCase(29, ExpectedResult = "th")]
-            [TestCase(30, ExpectedResult = "th")]
-            [TestCase(31, ExpectedResult = "st")]
-            public string WhenDayProvided_ThenReturnCorrectSuffix(int day)
+            [TestCase(1, "st")]
+            [TestCase(2, "nd")]
+            [TestCase(3, "rd")]
+            [TestCase(4, "th")]
+            [TestCase(5, "th")]
+            [TestCase(6, "th")]
+            [TestCase(7, "th")]
+            [TestCase(8, "th")]
+            [TestCase(9, "th")]
+            [TestCase(10, "th")]
+            [TestCase(11, "th")]
+            [TestCase(12, "th")]
+            [TestCase(13, "th")]
+            [TestCase(14, "th")]
+            [TestCase(15, "th")]
+            [TestCase(16, "th")]
+            [TestCase(17, "th")]
+            [TestCase(18, "th")]
+            [TestCase(19, "th")]
+            [TestCase(20, "th")]
+            [TestCase(21, "st")]
+            [TestCase(22, "nd")]
+            [TestCase(23, "rd")]
+            [TestCase(24, "th")]
+            [TestCase(25, "th")]
+            [TestCase(26, "th")]
+            [TestCase(27, "th")]
+            [TestCase(28, "th")]
+            [TestCase(29, "th")]
+            [TestCase(30, "th")]
+            [TestCase(31, "st")]
+            public void WhenDayProvided_ThenReturnCorrectSuffix(int day, string expectedSuffix)
             {
-                return new DateTime(2000, 1, day).GetDaySuffix();
+                var sut = new DateTime(2000, 1, day);
+
+                var result = sut.GetDayAsOrdinal();
+
+                Assert.That(result, Is.EqualTo($"{day}{expectedSuffix}"));
             }
         }
 
@@ -118,14 +131,14 @@ namespace ByteDev.Common.UnitTests.Time
         }
 
         [TestFixture]
-        public class ToSortableString
+        public class ToStringSortable
         {
             [Test]
             public void WhenNoDelimiter_ThenReturnNonDelimitedString()
             {
                 var sut = new DateTime(2010, 2, 1, 9, 5, 1);
 
-                var result = sut.ToSortableString();
+                var result = sut.ToStringSortable();
 
                 Assert.That(result, Is.EqualTo("20100201090501"));
             }
@@ -135,7 +148,7 @@ namespace ByteDev.Common.UnitTests.Time
             {
                 var sut = new DateTime(2010, 2, 1, 9, 5, 1);
 
-                var result = sut.ToSortableString("-");
+                var result = sut.ToStringSortable("-");
 
                 Assert.That(result, Is.EqualTo("2010-02-01-09-05-01"));
             }
@@ -214,85 +227,45 @@ namespace ByteDev.Common.UnitTests.Time
         }
 
         [TestFixture]
-        public class ToDisplayDateStringShort
+        public class ToStringDateDayShort
         {
             [Test]
             public void WhenDateTime_ThenReturnShortStringVersion()
             {
                 var sut = new DateTime(2014, 12, 31, 12, 15, 30);
 
-                var result = sut.ToDisplayDateStringShort();
+                var result = sut.ToStringDateDayShort();
 
                 Assert.That(result, Is.EqualTo("Wed 31st December 2014"));
             } 
         }
 
         [TestFixture]
-        public class ToDisplayDateStringLong
+        public class ToStringDateDayLong
         {
             [Test]
             public void WhenDateTime_ThenReturnLongVersion()
             {
                 var sut = new DateTime(2014, 12, 31, 12, 15, 30);
 
-                var result = sut.ToDisplayDateStringLong();
+                var result = sut.ToStringDateDayLong();
 
                 Assert.That(result, Is.EqualTo("Wednesday 31st December 2014"));
             } 
         }
 
         [TestFixture]
-        public class ToDisplayDateDay
+        public class ToStringDayOnly
         {
             [Test]
             public void WhenDateTime_ThenReturnDateDayVersion()
             {
                 var sut = new DateTime(2014, 12, 31, 12, 15, 30);
 
-                var result = sut.ToDisplayDateDay();
+                var result = sut.ToStringDayOnly();
 
                 Assert.That(result, Is.EqualTo("Wed 31st"));
             } 
-        }
-
-        [TestFixture]
-        public class ConvertUtcToLocalDateTime
-        {
-            private const string GbTimeZoneId = "GMT Standard Time";
-            private const string CoordinatedUtc = "UTC";
-
-            private readonly DateTime _dateTimeDayLightSavingInGb = new DateTime(2017, 6, 1, 2, 0, 0);
-            private readonly DateTime _dateTimeNotDayLightSavingInGb = new DateTime(2017, 1, 1, 2, 0, 0);
-
-            [Test]
-            public void WhenIsDayLightSaving_AndGmt_ThenReturnOneHourLater()
-            {
-                var sut = _dateTimeDayLightSavingInGb;          
-                
-                var result = sut.ConvertUtcToLocalDateTime(GbTimeZoneId);
-
-                Assert.That(result, Is.EqualTo(sut.AddHours(1)));
-            }
-
-            [Test]
-            public void WhenIsNotDayLightSaving_AndGmt_ThenReturnSameTime()
-            {
-                var sut = _dateTimeNotDayLightSavingInGb;
-
-                var result = sut.ConvertUtcToLocalDateTime(GbTimeZoneId);
-
-                Assert.That(result, Is.EqualTo(sut));
-            }
-
-            [Test]
-            public void WhenIsDayLightSaving_AndCoordinatedUtc_ThenReturnSameTime()
-            {
-                var sut = _dateTimeDayLightSavingInGb;
-
-                var result = sut.ConvertUtcToLocalDateTime(CoordinatedUtc);
-
-                Assert.That(result, Is.EqualTo(sut));
-            }
         }
     }
 }

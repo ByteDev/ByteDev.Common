@@ -1,5 +1,18 @@
 # Release Notes
 
+## 7.0.0 - ?
+
+Breaking changes:
+* A number of public method renames in DateTimeExtensions.
+* Removed DateTimeExtensions.ConvertUtcToLocalDateTime()
+* Removed DateTimeExtensions.ConvertLocalToUtcDateTime()
+
+New features:
+* (None)
+
+Bug fixes / internal changes:
+* Added XML documentation.
+
 ## 6.0.1 - 29 Sep 2019
 
 Breaking changes:

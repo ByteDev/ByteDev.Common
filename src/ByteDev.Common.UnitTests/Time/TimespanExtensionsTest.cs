@@ -13,46 +13,51 @@ namespace ByteDev.Common.UnitTests.Time
             [Test]
             public void WhenDaysAreGreaterThanZero_ThenReturnDayString()
             {
-                var timeSpan = new TimeSpan(1, 2, 3, 4);
-                var result = timeSpan.ToApproxFormat();
+                var sut = new TimeSpan(1, 2, 3, 4);
 
-                Assert.That(result, Is.EqualTo(timeSpan.Days + " day"));
+                var result = sut.ToApproxFormat();
+
+                Assert.That(result, Is.EqualTo(sut.Days + " day"));
             }
 
             [Test]
             public void WhenHoursAreGreaterThanZero_ThenReturnHoursString()
             {
-                var timeSpan = new TimeSpan(0, 2, 3, 4);
-                var result = timeSpan.ToApproxFormat();
+                var sut = new TimeSpan(0, 2, 3, 4);
 
-                Assert.That(result, Is.EqualTo(timeSpan.Hours + " hours"));
+                var result = sut.ToApproxFormat();
+
+                Assert.That(result, Is.EqualTo(sut.Hours + " hours"));
             }
 
             [Test]
             public void WhenMinutesAreGreaterThanZero_ThenReturnMinutesString()
             {
-                var timeSpan = new TimeSpan(0, 0, 3, 4);
-                var result = timeSpan.ToApproxFormat();
+                var sut = new TimeSpan(0, 0, 3, 4);
 
-                Assert.That(result, Is.EqualTo(timeSpan.Minutes + " minutes"));
+                var result = sut.ToApproxFormat();
+
+                Assert.That(result, Is.EqualTo(sut.Minutes + " minutes"));
             }
 
             [Test]
             public void WhenSecondsAreGreaterThanZero_ThenReturnSecondsString()
             {
-                var timeSpan = new TimeSpan(0, 0, 0, 4);
-                var result = timeSpan.ToApproxFormat();
+                var sut = new TimeSpan(0, 0, 0, 4);
 
-                Assert.That(result, Is.EqualTo(timeSpan.Seconds + " seconds"));
+                var result = sut.ToApproxFormat();
+
+                Assert.That(result, Is.EqualTo(sut.Seconds + " seconds"));
             }
 
             [Test]
             public void WhenSecondsAreZero_ThenReturnSecondsString()
             {
-                var timeSpan = new TimeSpan(0, 0, 0, 0, 10);
-                var result = timeSpan.ToApproxFormat();
+                var sut = new TimeSpan(0, 0, 0, 0, 10);
 
-                Assert.That(result, Is.EqualTo(timeSpan.Seconds + " seconds"));
+                var result = sut.ToApproxFormat();
+
+                Assert.That(result, Is.EqualTo(sut.Seconds + " seconds"));
             }
         }
     }
