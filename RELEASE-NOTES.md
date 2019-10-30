@@ -4,8 +4,9 @@
 
 Breaking changes:
 * A number of public method renames in DateTimeExtensions.
-* Removed DateTimeExtensions.ConvertUtcToLocalDateTime()
-* Removed DateTimeExtensions.ConvertLocalToUtcDateTime()
+* Removed DateTimeExtensions.ConvertUtcToLocalDateTime().
+* Removed DateTimeExtensions.ConvertLocalToUtcDateTime().
+* FuncTimer is now in ByteDev.Common.Threading namespace.
 
 New features:
 * (None)

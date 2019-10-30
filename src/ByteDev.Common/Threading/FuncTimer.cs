@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace ByteDev.Common.Time
+namespace ByteDev.Common.Threading
 {
-    public class FuncTimer
+    public static class FuncTimer
     {
         /// <summary>
         /// Provided func will keep getting called until it returns true or the timeout is reached
         /// (which ever occurs first).
         /// </summary>
-        /// <returns>True, the func returned true in time. False, the func timed out.</returns>
+        /// <param name="func"></param>
+        /// <param name="timeout"></param>
+        /// <returns>True if the func return true in time; otherwise returns false.</returns>
         public static bool WaitFuncReturnsTrueOrTimeout(Func<bool> func, TimeSpan timeout)
         {
             var source = new Stopwatch();
