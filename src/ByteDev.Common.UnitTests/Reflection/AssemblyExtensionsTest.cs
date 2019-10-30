@@ -15,7 +15,51 @@ namespace ByteDev.Common.UnitTests.Reflection
         {
             _sut = Assembly.GetAssembly(typeof(AssemblyExtensionsTest));
         }
-        
+
+        [TestFixture]
+        public class GetSubClasses : AssemblyExtensionsTest
+        {
+            [Test]
+            public void WhenIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => (null as Assembly).GetSubClasses<Car>());
+            }
+
+            [Test]
+            public void WhenTypeHasSubClasses_ThenReturnsSubClasses()
+            {
+                var result = _sut.GetSubClasses<Car>();
+
+                Assert.That(result.Count, Is.EqualTo(2));
+            }
+
+            [Test]
+            public void WhenTypeHasNoSubClasses_ThenReturnsEmpty()
+            {
+                var result = _sut.GetSubClasses<Ford>();
+
+                Assert.That(result.Count, Is.EqualTo(0));
+            }
+        }
+
+        [TestFixture]
+        public class GetAssemblyAttribute : AssemblyExtensionsTest
+        {
+            [Test]
+            public void WhenIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => (null as Assembly).GetAssemblyAttribute<AssemblyProductAttribute>());
+            }
+
+            [Test]
+            public void WhenAssemblyAttributeExists_ThenReturnCorrectAttribute()
+            {
+                var result = _sut.GetAssemblyAttribute<AssemblyProductAttribute>();
+
+                Assert.That(result.Product, Is.EqualTo("ByteDev.Common.UnitTests"));
+            }
+        }
+
         [TestFixture]
         public class GetVersion : AssemblyExtensionsTest
         {
@@ -49,50 +93,6 @@ namespace ByteDev.Common.UnitTests.Reflection
                 var result = _sut.GetFileVersion();
 
                 Assert.That(result.ToString(), Is.EqualTo("1.0.0.0"));
-            }
-        }
-
-        [TestFixture]
-        public class GetAssemblyAttribute : AssemblyExtensionsTest
-        {
-            [Test]
-            public void WhenIsNull_ThenThrowException()
-            {
-                Assert.Throws<ArgumentNullException>(() => (null as Assembly).GetAssemblyAttribute<AssemblyProductAttribute>());
-            }
-
-            [Test]
-            public void WhenAssemblyAttributeExists_ThenReturnCorrectAttribute()
-            {
-                var result = _sut.GetAssemblyAttribute<AssemblyProductAttribute>();
-
-                Assert.That(result.Product, Is.EqualTo("ByteDev.Common.UnitTests"));
-            }
-        }
-
-        [TestFixture]
-        public class GetSubClasses : AssemblyExtensionsTest
-        {
-            [Test]
-            public void WhenIsNull_ThenThrowException()
-            {
-                Assert.Throws<ArgumentNullException>(() => (null as Assembly).GetSubClasses<Car>());
-            }
-
-            [Test]
-            public void WhenTypeHasSubClasses_ThenReturnsSubClasses()
-            {
-                var result = _sut.GetSubClasses<Car>();
-
-                Assert.That(result.Count, Is.EqualTo(2));
-            }
-
-            [Test]
-            public void WhenTypeHasNoSubClasses_ThenReturnsEmpty()
-            {
-                var result = _sut.GetSubClasses<Ford>();
-
-                Assert.That(result.Count, Is.EqualTo(0));
             }
         }
 

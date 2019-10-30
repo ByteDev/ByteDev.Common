@@ -4,50 +4,65 @@ using System.Reflection;
 
 namespace ByteDev.Common.Reflection
 {
+    /// <summary>
+    /// Attribute reflection related extension methods.
+    /// </summary>
     public static class ReflectionAttributeExtensions
     {
-        public static bool HasAttribute(this Type type, Type attributeType)
+        /// <summary>
+        /// Checks whether <paramref name="source" /> has attribute <typeparamref name="TAttribute" />.
+        /// </summary>
+        /// <typeparam name="TAttribute">Type of attribute to check for.</typeparam>
+        /// <param name="source">The type to check whether has the attribute.</param>
+        /// <returns>True if <paramref name="source" /> has the attribute <typeparamref name="TAttribute" />; otherwise returns false.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        public static bool HasAttribute<TAttribute>(this Type source) where TAttribute : Attribute
         {
-            return type.GetTypeInfo().IsDefined(attributeType, true);
+            if(source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            return GetAttribute<TAttribute>(source) != null;
         }
 
-        public static bool HasAttribute<T>(this Type type, Func<T, bool> predicate) where T : Attribute
-        {
-            return type.GetTypeInfo().GetCustomAttributes<T>(true).Any(predicate);
-        }
-
+        /// <summary>
+        /// Checks whether <paramref name="source" /> has attribute <typeparamref name="TAttribute" />.
+        /// </summary>
+        /// <typeparam name="TAttribute">Type of attribute to check for.</typeparam>
+        /// <param name="source">The object to check whether has the attribute.</param>
+        /// <returns>True if <paramref name="source" /> has the attribute <typeparamref name="TAttribute" />; otherwise returns false.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         public static bool HasAttribute<TAttribute>(this object source) where TAttribute : Attribute
         {
-            var memberInfo = source as MemberInfo;
-
-            if (memberInfo != null)
-            {
-                return GetMemberAttribute<TAttribute>(memberInfo) != null;
-            }
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
 
             var type = source.GetType();
-            return GetTypeAttribute<TAttribute>(type) != null;
+
+            return GetAttribute<TAttribute>(type) != null;
         }
 
-        private static TAttribute GetMemberAttribute<TAttribute>(MemberInfo member) where TAttribute : Attribute
+        /// <summary>
+        /// Checks whether <paramref name="source" /> has attribute <typeparamref name="TAttribute" />.
+        /// </summary>
+        /// <typeparam name="TAttribute">Type of attribute to check for.</typeparam>
+        /// <param name="source">The member or method to check whether has the attribute.</param>
+        /// <returns>True if <paramref name="source" /> has the attribute <typeparamref name="TAttribute" />; otherwise returns false.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        public static bool HasAttribute<TAttribute>(this MemberInfo source) where TAttribute : Attribute
         {
-            var attributes = member.GetCustomAttributes(typeof(TAttribute), true);
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
 
-            if (attributes.Length > 0)
-            {
-                return (TAttribute)attributes.First();
-            }
-            return null;
+            return GetAttribute<TAttribute>(source) != null;
         }
 
-        private static TAttribute GetTypeAttribute<TAttribute>(Type type) where TAttribute : Attribute
+        private static TAttribute GetAttribute<TAttribute>(ICustomAttributeProvider type) where TAttribute : Attribute
         {
-            var attributes = type.GetCustomAttributes(typeof (TAttribute), true);
+            var attributes = type.GetCustomAttributes(typeof(TAttribute), true);
 
             if (attributes.Length > 0)
-            {
                 return (TAttribute)attributes.First();
-            }
+            
             return null;
         }
     }
