@@ -5,13 +5,16 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace ByteDev.Common.Serialization.Base64
 {
+    /// <summary>
+    /// Represents a base64 encoded string serializer.
+    /// </summary>
     public class Base64Serializer : IBase64Serializer
     {
         /// <summary>
-        /// Serializes a object to a compressed base64 string
+        /// Serializes a object to a compressed base64 string.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">The object to serialize to base64.</param>
+        /// <returns><paramref name="obj" /> serialized to base64 compressed string.</returns>
         public string Serialize(object obj)
         {
             using (var stream = new MemoryStream())
@@ -27,12 +30,11 @@ namespace ByteDev.Common.Serialization.Base64
         }
 
         /// <summary>
-        /// Deserializes a compressed base64 string to object
-        /// of the given type
+        /// Deserializes a compressed base64 string to object of the given type.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">The type to deserialize to.</typeparam>
+        /// <param name="input">The compressed base64 string to deserialize.</param>
+        /// <returns><paramref name="input" /> deserialized to object of type <typeparamref name="T" />.</returns>
         public T Deserialize<T>(string input)
         {
             var compressedBytes = Convert.FromBase64String(input);
@@ -55,6 +57,7 @@ namespace ByteDev.Common.Serialization.Base64
                 {
                     CopyBuffered(stream, writeStream);
                 }
+
                 var resultArray = resultStream.ToArray();
 
                 return resultArray;
@@ -64,6 +67,7 @@ namespace ByteDev.Common.Serialization.Base64
         private static void Decompress(byte[] compressedBytes, Stream outputStream)
         {
             var memoryStream = new MemoryStream(compressedBytes);
+
             try
             {
                 using (var readStream = new GZipStream(memoryStream, CompressionMode.Decompress, true))
@@ -74,17 +78,14 @@ namespace ByteDev.Common.Serialization.Base64
             }
             finally
             {
-                if (memoryStream != null)
-                    memoryStream.Dispose();
+                memoryStream?.Dispose();
             }
         }
 
         private static void CopyBuffered(Stream readStream, Stream writeStream)
         {
             if (readStream.CanSeek)
-            {
                 readStream.Position = 0;
-            }
 
             var bytes = new byte[4096];
             int byteCount;

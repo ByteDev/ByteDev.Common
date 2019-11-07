@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using ByteDev.Collections;
 using ByteDev.Common.Threading;
 using NUnit.Framework;
 
@@ -101,7 +103,7 @@ namespace ByteDev.Common.UnitTests.Threading
 
                 var ex = Assert.ThrowsAsync<AggregateException>(() => TaskHelper.WhenAllTasksAsync(tasks));
 
-                Assert.That(ex.InnerExceptions[0].Message, Is.EqualTo("Exception 1"));
+                Assert.That(ex.InnerExceptions.Single().Message, Is.EqualTo("Exception 1"));
                 Assert.That(counter, Is.EqualTo(1));
             }
 
@@ -124,8 +126,8 @@ namespace ByteDev.Common.UnitTests.Threading
 
                 var ex = Assert.ThrowsAsync<AggregateException>(() => TaskHelper.WhenAllTasksAsync(tasks));
 
-                Assert.That(ex.InnerExceptions[0].Message, Is.EqualTo("Exception 1"));
-                Assert.That(ex.InnerExceptions[1].Message, Is.EqualTo("Exception 2"));
+                Assert.That(ex.InnerExceptions.First().Message, Is.EqualTo("Exception 1"));
+                Assert.That(ex.InnerExceptions.Second().Message, Is.EqualTo("Exception 2"));
             }
         }
     }
