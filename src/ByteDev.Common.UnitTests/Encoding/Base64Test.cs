@@ -88,7 +88,7 @@ namespace ByteDev.Common.UnitTests.Encoding
             [TestCase("", "")]
             [TestCase("John Smith", "Sm9obiBTbWl0aA==")]
             [TestCase("John Smith12345", "Sm9obiBTbWl0aDEyMzQ1")]
-            public void WithText_ThenReturnBased64(string text, string expected)
+            public void WhenUtf8StringIsNotNull_ThenReturnBased64(string text, string expected)
             {
                 var result = Base64.ConvertUtf8ToBase64(text);
 

@@ -3,24 +3,26 @@ using System.Globalization;
 
 namespace ByteDev.Common.Encoding
 {
+    /// <summary>
+    /// Represents a set of Hex related operations.
+    /// </summary>
     public class Hex
     {
         /// <summary>
-        /// Creates a hex string from byte array
+        /// Converts <paramref name="bytes" /> to a hex encoded string.
         /// </summary>
-        /// <param name="bytes">The byte data</param>
-        /// <returns>A hex string (base16 encoded)</returns>
+        /// <param name="bytes">The byte data to convert to hex.</param>
+        /// <returns>A hex string (base16 encoded).</returns>
         public static string ConvertToHex(byte[] bytes)
         {
             return BitConverter.ToString(bytes).Replace("-", "");
         }
 
         /// <summary>
-        /// Creates a byte array from a hex (base16)
-        /// encoded string
+        /// Converts <paramref name="hex" /> to a byte array.
         /// </summary>
         /// <param name="hex">A hex string (base16 encoded)</param>
-        /// <returns>Byte array</returns>
+        /// <returns>A byte array.</returns>
         public static byte[] ConvertToBytes(string hex)
         {
             var bytes = new byte[hex.Length / 2];
@@ -29,6 +31,7 @@ namespace ByteDev.Common.Encoding
             {
                 bytes[i] = byte.Parse(hex.Substring(i * 2, 2), NumberStyles.HexNumber);
             }
+
             return bytes;
         }
     }
