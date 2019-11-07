@@ -4,7 +4,11 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Description>Set of common .NET utility classes.</Description>
     <Authors>Paul Stanley</Authors>
-    <Company></Company>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>

@@ -20,7 +20,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{7153D74C
 		..\build\build.cake = ..\build\build.cake
 		..\build\ByteDev.Common.cake = ..\build\ByteDev.Common.cake
 		ByteDev.Common.nuspec = ByteDev.Common.nuspec
-		..\build\nuget-publish.ps1 = ..\build\nuget-publish.ps1
 	EndProjectSection
 EndProject
 Global
