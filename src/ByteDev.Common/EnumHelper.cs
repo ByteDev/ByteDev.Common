@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace ByteDev.Common
 {
+    /// <summary>
+    /// Represents a set of helper methods for <see cref="T:System.Enum" />.
+    /// </summary>
     public static class EnumHelper
     {
         /// <summary>

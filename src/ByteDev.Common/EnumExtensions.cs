@@ -3,6 +3,9 @@ using System.ComponentModel;
 
 namespace ByteDev.Common
 {
+    /// <summary>
+    /// Extension methods for <see cref="T:System.Enum" />.
+    /// </summary>
     public static class EnumExtensions
     {
         /// <summary>

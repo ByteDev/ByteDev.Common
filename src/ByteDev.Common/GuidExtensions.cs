@@ -1,6 +1,9 @@
 ﻿using System;
 namespace ByteDev.Common
 {
+    /// <summary>
+    /// Extension methods for <see cref="T:System.Guid" />.
+    /// </summary>
     public static class GuidExtensions
     {
         /// <summary>
