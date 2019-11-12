@@ -2,13 +2,16 @@
 
 namespace ByteDev.Common
 {
+    /// <summary>
+    /// Extension methods for <see cref="T:System.Random" />.
+    /// </summary>
     public static class RandomExtensions
     {
         /// <summary>
         /// Randomly return either true or false.
         /// </summary>
         /// <param name="source">Random object to perform the operation on.</param>
-        /// <returns>True or false.</returns>
+        /// <returns>True or false randomly.</returns>
         public static bool CoinToss(this Random source)
         {
             return source.Next(2) == 0;
@@ -29,7 +32,7 @@ namespace ByteDev.Common
                 throw new ArgumentNullException(nameof(options));
             
             if(options.Length < 1)
-                throw new ArgumentException($"Argument {nameof(options)} was empty.");
+                throw new ArgumentException($"Argument {nameof(options)} is empty.");
 
             return options[source.Next(options.Length)];
         }

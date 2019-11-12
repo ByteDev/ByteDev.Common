@@ -3,6 +3,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 namespace ByteDev.Common
 {
+    /// <summary>
+    /// Extension methods for <see cref="T:System.String" />.
+    /// </summary>
     public static class StringExtensions
     {
         /// <summary>
@@ -15,6 +18,13 @@ namespace ByteDev.Common
             return source?.Length ?? 0;
         }
 
+        /// <summary>
+        /// Removes starting string <paramref name="value" /> if <paramref name="source" /> starts with it.
+        /// </summary>
+        /// <param name="source">The string to perform the operation on.</param>
+        /// <param name="value">The starting string.</param>
+        /// <returns>String with the starting string <paramref name="value" /> removed if it starts with it.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is null.</exception>
         public static string RemoveStartsWith(this string source, string value)
         {
             if(value == null)
@@ -28,7 +38,14 @@ namespace ByteDev.Common
 
             return source;
         }
-
+        
+        /// <summary>
+        /// Removes ending string <paramref name="value" /> if <paramref name="source" /> starts with it.
+        /// </summary>
+        /// <param name="source">The string to perform the operation on.</param>
+        /// <param name="value">The ending string.</param>
+        /// <returns>String with the ending string <paramref name="value" /> removed if it ends with it.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is null.</exception>
         public static string RemoveEndsWith(this string source, string value)
         {
             if (value == null)
@@ -90,30 +107,29 @@ namespace ByteDev.Common
         }
 
         /// <summary>
-        /// Takes the length of characters from the left. Uses an appended
-        /// ellipsis if the max length minus 3 is reached.
+        /// Takes the length of characters from the left. Uses an appended ellipsis if the max length minus 3 is reached.
         /// </summary>
+        /// <param name="source">The string to perform the operation on.</param>
+        /// <param name="maxLength"></param>
+        /// <returns>Shortened string with ellipsis if greater than max length minus 3; otherwise returns the original string.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        /// <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="maxLength" /> cannot be between 1 and 3.</exception>
         public static string TakeFirstWithEllipsis(this string source, int maxLength)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
             if (maxLength < 1)
-            {
                 return string.Empty;
-            }
             
             const string ellipsis = "...";
 
             if(maxLength <= ellipsis.Length)
-            {
                 throw new ArgumentOutOfRangeException(nameof(maxLength), $"Max length cannot be between 1 and {ellipsis.Length} (ellipsis length).");
-            }
-            
+
             if (maxLength < source.Length)
-            {
                 return source.Substring(0, maxLength - ellipsis.Length) + ellipsis;
-            }
+
             return source;
         }
 
@@ -126,9 +142,7 @@ namespace ByteDev.Common
         public static string InnerTruncate(this string source, int maxLength)
         {
             if (string.IsNullOrEmpty(source) || source.Length <= maxLength)
-            {
                 return source;
-            }
 
             var charsInEachHalf = (maxLength - 3) / 2;
 
@@ -146,9 +160,8 @@ namespace ByteDev.Common
         public static string RemoveBracketedText(this string source)
         {
             if (string.IsNullOrEmpty(source))
-            {
                 return source;
-            }
+
             int posOpenBracket;
 
             while ((posOpenBracket = source.IndexOf("(", StringComparison.Ordinal)) >= 0)
@@ -168,6 +181,11 @@ namespace ByteDev.Common
             return source;
         }
 
+        /// <summary>
+        /// Removes all white space characters from the string.
+        /// </summary>
+        /// <param name="source">The string to perform the operation on.</param>
+        /// <returns>String without white space characters.</returns>
         public static string RemoveWhiteSpace(this string source)
         {
             if (string.IsNullOrEmpty(source))
@@ -202,9 +220,8 @@ namespace ByteDev.Common
         public static int CountOccurences(this string source, string value)
         {
             if (string.IsNullOrEmpty(value))
-            {
                 throw new ArgumentException("Value was null or empty.", nameof(value));
-            }
+            
             return Regex.Matches(source, Regex.Escape(value)).Count;
         }
 
