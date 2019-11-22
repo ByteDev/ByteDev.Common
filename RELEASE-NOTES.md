@@ -8,6 +8,8 @@ Breaking changes:
 * Removed DateTimeExtensions.ConvertLocalToUtcDateTime().
 * FuncTimer is now in ByteDev.Common.Threading namespace.
 * ReflectionAttributeExtensions now has clearer methods for Type, Object and MemberInfo for HasAttribute method.
+* TakeFirstWithEllipsis is now LeftWithEllipsis
+* InnerTruncate is now LeftWithInnerEllipsis
 
 New features:
 * (None)

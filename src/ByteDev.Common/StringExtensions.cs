@@ -60,6 +60,13 @@ namespace ByteDev.Common
             return source;
         }
 
+        /// <summary>
+        /// Replace all the tokens in the <paramref name="source" /> with <paramref name="value" />.
+        /// </summary>
+        /// <param name="source">The string to perform the operation on.</param>
+        /// <param name="tokenName">The token to search and replace on.</param>
+        /// <param name="value">The value to replace with.</param>
+        /// <returns>String with all the instances of the token replaced.</returns>
         public static string ReplaceToken(this string source, string tokenName, object value)
         {
             if (source == null)
@@ -76,6 +83,13 @@ namespace ByteDev.Common
             return string.Format(source, args);
         }
 
+        /// <summary>
+        /// Safely retrieves a substring from this instance. No exceptions will be thrown.
+        /// </summary>
+        /// <param name="source">The string to perform the operation on.</param>
+        /// <param name="startIndex">The zero-based starting character position of a substring in this instance.</param>
+        /// <param name="length">The number of characters in the substring.</param>
+        /// <returns>A string that is equivalent to the substring of length <paramref name="length" /> that begins at <paramref name="startIndex" />.</returns>
         public static string SafeSubstring(this string source, int startIndex, int length)
         {
             if (string.IsNullOrEmpty(source))
@@ -93,11 +107,23 @@ namespace ByteDev.Common
             return source.Substring(startIndex, length);
         }
 
+        /// <summary>
+        /// Retrieves a substring from this instance taking <paramref name="length" /> characters from the left.
+        /// </summary>
+        /// <param name="source">The string to perform the operation on.</param>
+        /// <param name="length">The number of characters to take starting on the left.</param>
+        /// <returns>A string that is equivalent to the substring of length <paramref name="length" /> taking characters from the left.</returns>
         public static string Left(this string source, int length)
         {
             return source.SafeSubstring(0, length);
         }
 
+        /// <summary>
+        /// Retrieves a substring from this instance taking <paramref name="length" /> characters from the right.
+        /// </summary>
+        /// <param name="source">The string to perform the operation on.</param>
+        /// <param name="length">The number of characters to take starting on the right.</param>
+        /// <returns>A string that is equivalent to the substring of length <paramref name="length" /> taking characters from the right.</returns>
         public static string Right(this string source, int length)
         {
             if (length > source.Length)
@@ -114,7 +140,7 @@ namespace ByteDev.Common
         /// <returns>Shortened string with ellipsis if greater than max length minus 3; otherwise returns the original string.</returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         /// <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="maxLength" /> cannot be between 1 and 3.</exception>
-        public static string TakeFirstWithEllipsis(this string source, int maxLength)
+        public static string LeftWithEllipsis(this string source, int maxLength)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
@@ -135,11 +161,11 @@ namespace ByteDev.Common
 
         /// <summary>
         /// Truncates the given string by stripping out the center and replacing it with an 
-        /// elipsis so that the beginning and end of the string are retained. For example, 
-        /// "This string has too many characters for its own good."InnerTruncate(32) yields 
+        /// ellipsis so that the beginning and end of the string are retained. For example, 
+        /// "This string has too many characters for its own good."LeftWithInnerEllipsis(32) yields 
         /// "This string has...its own good." 
         /// </summary>
-        public static string InnerTruncate(this string source, int maxLength)
+        public static string LeftWithInnerEllipsis(this string source, int maxLength)
         {
             if (string.IsNullOrEmpty(source) || source.Length <= maxLength)
                 return source;

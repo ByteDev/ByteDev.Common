@@ -131,7 +131,17 @@ namespace ByteDev.Common.UnitTests
             }
 
             [Test]
-            public void WhenTokenIsValid_ThenReturnReplacedString()
+            public void WhenStringIsEmpty_ThenReturnEmpty()
+            {
+                string sut = string.Empty;
+
+                var result = sut.ReplaceToken("customerId", 123);
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void WhenOneTokenPresent_ThenReplaceToken()
             {
                 const string sut = "/customer/{customerId}/activate";
 
@@ -141,13 +151,33 @@ namespace ByteDev.Common.UnitTests
             }
 
             [Test]
-            public void WhenChainingCalls_ThenReturnReplacedString()
+            public void WhenTwoTokensPresent_ThenReplaceBothTokens()
             {
-                const string sut = "/customer/{customerId}/activate/history/{historyId}";
+                const string sut = "/customer/{customerId}/activate/{customerId}";
 
-                var result = sut.ReplaceToken("customerId", 123).ReplaceToken("historyId", 456);
+                var result = sut.ReplaceToken("customerId", 123);
 
-                Assert.That(result, Is.EqualTo("/customer/123/activate/history/456"));
+                Assert.That(result, Is.EqualTo("/customer/123/activate/123"));
+            }
+
+            [Test]
+            public void WhenTokenIsNull_ThenReturnEqualString()
+            {
+                const string sut = "/customer/{customerId}/activate";
+
+                var result = sut.ReplaceToken(null, 123);
+
+                Assert.That(result, Is.EqualTo("/customer/{customerId}/activate"));
+            }
+
+            [Test]
+            public void WhenTokenIsEmpty_ThenReturnEqualString()
+            {
+                const string sut = "/customer/{customerId}/activate";
+
+                var result = sut.ReplaceToken(string.Empty, 123);
+
+                Assert.That(result, Is.EqualTo("/customer/{customerId}/activate"));
             }
 
             [Test]
@@ -202,14 +232,14 @@ namespace ByteDev.Common.UnitTests
         }
 
         [TestFixture]
-        public class TakeFirstWithEllipsis
+        public class LeftWithEllipsis
         {
             [Test]
             public void WhenMaxLengthIsLessThanStringLength_ThenTruncate()
             {
                 const string sut = "1234567890";
 
-                var result = sut.TakeFirstWithEllipsis(5);
+                var result = sut.LeftWithEllipsis(5);
 
                 Assert.That(result, Is.EqualTo("12..."));
             }
@@ -219,7 +249,7 @@ namespace ByteDev.Common.UnitTests
             {
                 const string sut = "1234567890";
 
-                var result = sut.TakeFirstWithEllipsis(10);
+                var result = sut.LeftWithEllipsis(10);
 
                 Assert.That(result, Is.EqualTo(sut));
             }
@@ -229,7 +259,7 @@ namespace ByteDev.Common.UnitTests
             {
                 const string sut = "1234567890";
 
-                var result = sut.TakeFirstWithEllipsis(11);
+                var result = sut.LeftWithEllipsis(11);
 
                 Assert.That(result, Is.EqualTo(sut));
             }
@@ -239,7 +269,7 @@ namespace ByteDev.Common.UnitTests
             {
                 const string sut = "1234567890";
 
-                var result = sut.TakeFirstWithEllipsis(0);
+                var result = sut.LeftWithEllipsis(0);
 
                 Assert.That(result, Is.EqualTo(string.Empty));
             }
@@ -249,7 +279,7 @@ namespace ByteDev.Common.UnitTests
             {
                 const string sut = "1234567890";
 
-                var result = sut.TakeFirstWithEllipsis(-1);
+                var result = sut.LeftWithEllipsis(-1);
 
                 Assert.That(result, Is.EqualTo(string.Empty));
             }
@@ -259,7 +289,7 @@ namespace ByteDev.Common.UnitTests
             {
                 const string sut = null;
 
-                Assert.Throws<ArgumentNullException>(() => sut.TakeFirstWithEllipsis(10));
+                Assert.Throws<ArgumentNullException>(() => sut.LeftWithEllipsis(10));
             }
 
             [Test]
@@ -267,7 +297,7 @@ namespace ByteDev.Common.UnitTests
             {
                 const string sut = "1234567890";
 
-                Assert.Throws<ArgumentOutOfRangeException>(() => sut.TakeFirstWithEllipsis(1));
+                Assert.Throws<ArgumentOutOfRangeException>(() => sut.LeftWithEllipsis(1));
             }
 
             [Test]
@@ -275,7 +305,7 @@ namespace ByteDev.Common.UnitTests
             {
                 const string sut = "1234567890";
 
-                Assert.Throws<ArgumentOutOfRangeException>(() => sut.TakeFirstWithEllipsis(3));
+                Assert.Throws<ArgumentOutOfRangeException>(() => sut.LeftWithEllipsis(3));
             }
         }
 
@@ -597,7 +627,7 @@ namespace ByteDev.Common.UnitTests
         }
 
         [TestFixture]
-        public class InnerTruncate
+        public class LeftWithInnerEllipsis
         {
             private string _sut;
 
@@ -612,7 +642,7 @@ namespace ByteDev.Common.UnitTests
             {
                 const string sut = null;
 
-                var result = sut.InnerTruncate(10);
+                var result = sut.LeftWithInnerEllipsis(10);
 
                 Assert.That(result, Is.Null);
             }
@@ -620,7 +650,7 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenLengthIsLessThanMaxLength_ThenReturnString()
             {
-                var result = _sut.InnerTruncate(_sut.Length + 1);
+                var result = _sut.LeftWithInnerEllipsis(_sut.Length + 1);
 
                 Assert.That(result, Is.EqualTo(_sut));
             }
@@ -628,7 +658,7 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenLengthIsEqualToMaxLength_ThenReturnString()
             {
-                var result = _sut.InnerTruncate(_sut.Length);
+                var result = _sut.LeftWithInnerEllipsis(_sut.Length);
 
                 Assert.That(result, Is.EqualTo(_sut));
             }
@@ -636,7 +666,7 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenLengthIsMoreThanMaxLength_ThenTruncateString()
             {
-                var result = _sut.InnerTruncate(_sut.Length - 1);
+                var result = _sut.LeftWithInnerEllipsis(_sut.Length - 1);
 
                 Assert.That(result, Is.EqualTo("This string has too many...racters for its own good"));
             }
@@ -710,7 +740,7 @@ namespace ByteDev.Common.UnitTests
             }
 
             [Test]
-            public void WhenLengthIsZero_ThenReturnEmpty()
+            public void WhenLengthIsLessThanOne_ThenReturnEmpty()
             {
                 const string sut = "John Smith";
 
