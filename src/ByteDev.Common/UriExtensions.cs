@@ -6,6 +6,9 @@ using System.Web;
 
 namespace ByteDev.Common
 {
+    /// <summary>
+    /// Extension methods for <see cref="T:System.Uri" />.
+    /// </summary>
     public static class UriExtensions
     {
         public static Uri AddPath(this Uri source, string path)
