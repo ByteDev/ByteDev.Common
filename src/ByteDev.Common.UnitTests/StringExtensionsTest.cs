@@ -422,7 +422,7 @@ namespace ByteDev.Common.UnitTests
         [TestFixture]
         public class Pluralize
         {
-            private const string ClassUnderTest = "Item";
+            private const string Sut = "Item";
 
             [Test]
             public void WhenSourceIsEmpty_ThenReturnEmpty()
@@ -435,41 +435,41 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenNumberIsMinusTwo_ThenAddPlural()
             {
-                var result = ClassUnderTest.Pluralize(-2);
+                var result = Sut.Pluralize(-2);
 
-                Assert.That(result, Is.EqualTo(ClassUnderTest + "s"));
+                Assert.That(result, Is.EqualTo(Sut + "s"));
             }
 
             [Test]
             public void WhenNumberIsMinusOne_ThenNotAddPlural()
             {
-                var result = ClassUnderTest.Pluralize(-1);
+                var result = Sut.Pluralize(-1);
 
-                Assert.That(result, Is.EqualTo(ClassUnderTest));
+                Assert.That(result, Is.EqualTo(Sut));
             }
 
             [Test]
             public void WhenNumberIsZero_ThenAddPlural()
             {
-                var result = ClassUnderTest.Pluralize(0);
+                var result = Sut.Pluralize(0);
 
-                Assert.That(result, Is.EqualTo(ClassUnderTest + "s"));
+                Assert.That(result, Is.EqualTo(Sut + "s"));
             }
 
             [Test]
             public void WhenNumberIsOne_ThenNotAddPlural()
             {
-                var result = ClassUnderTest.Pluralize(1);
+                var result = Sut.Pluralize(1);
 
-                Assert.That(result, Is.EqualTo(ClassUnderTest));
+                Assert.That(result, Is.EqualTo(Sut));
             }
 
             [Test]
             public void WhenNumberIsTwo_ThenAddPlural()
             {
-                var result = ClassUnderTest.Pluralize(2);
+                var result = Sut.Pluralize(2);
 
-                Assert.That(result, Is.EqualTo(ClassUnderTest + "s"));
+                Assert.That(result, Is.EqualTo(Sut + "s"));
             }
         }
 
@@ -606,7 +606,7 @@ namespace ByteDev.Common.UnitTests
             }
 
             [Test]
-            public void WhenIsEmpty_AndRepeatTwice_ThenReturnEmpty()
+            public void WhenIsEmpty_ThenReturnEmpty()
             {
                 var sut = string.Empty;
 
@@ -616,7 +616,17 @@ namespace ByteDev.Common.UnitTests
             }
 
             [Test]
-            public void WhenIsNotEmpty_AndRepeatTwice_ThenReturnRepeatedString()
+            public void WhenRepeatOnce_ThenReturnEqualString()
+            {
+                const string sut = "something";
+
+                var result = sut.Repeat(1);
+
+                Assert.That(result, Is.EqualTo(sut));
+            }
+
+            [Test]
+            public void WhenRepeatTwice_ThenReturnRepeatedString()
             {
                 const string sut = "something";
 
@@ -673,14 +683,14 @@ namespace ByteDev.Common.UnitTests
         }
 
         [TestFixture]
-        public class ReplaceLastOccurance
+        public class ReplaceLastOccurrence
         {
             [Test]
             public void WhenIsNull_ThenReturnNull()
             {
                 const string sut = null;
 
-                var result = sut.ReplaceLastOccurance("John", "Peter");
+                var result = sut.ReplaceLastOccurrence("John", "Peter");
 
                 Assert.That(result, Is.Null);
             }
@@ -690,7 +700,7 @@ namespace ByteDev.Common.UnitTests
             {
                 var sut = string.Empty;
 
-                var result = sut.ReplaceLastOccurance("John", "Peter");
+                var result = sut.ReplaceLastOccurrence("John", "Peter");
 
                 Assert.That(result, Is.Empty);
             }
@@ -700,7 +710,7 @@ namespace ByteDev.Common.UnitTests
             {
                 const string sut = "John Smith";
 
-                var result = sut.ReplaceLastOccurance("Luke", "Peter");
+                var result = sut.ReplaceLastOccurrence("Luke", "Peter");
 
                 Assert.That(result, Is.EqualTo(sut));
             }
@@ -710,7 +720,7 @@ namespace ByteDev.Common.UnitTests
             {
                 const string sut = "John Smith and John Jones";
 
-                var result = sut.ReplaceLastOccurance("John", "Peter");
+                var result = sut.ReplaceLastOccurrence("John", "Peter");
 
                 Assert.That(result, Is.EqualTo("John Smith and Peter Jones"));
             }
