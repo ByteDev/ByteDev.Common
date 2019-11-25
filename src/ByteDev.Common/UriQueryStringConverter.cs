@@ -4,11 +4,19 @@ using System.Text;
 
 namespace ByteDev.Common
 {
+    /// <summary>
+    /// Represents a converter to convert <see cref="T:System.Collections.Specialized.NameValueCollection" /> to query string.
+    /// </summary>
     public class UriQueryStringConverter
     {
+        /// <summary>
+        /// Converts <paramref name="nameValues" /> to a valid Uri path string.
+        /// </summary>
+        /// <param name="nameValues">The NameValueCollection to convert.</param>
+        /// <returns>A string representing a Uri path.</returns>
         public string ConvertToQueryString(NameValueCollection nameValues)
         {
-            if ((nameValues == null) || (nameValues.Count < 1))
+            if (nameValues == null || nameValues.Count < 1)
                 return string.Empty;
 
             var sb = new StringBuilder();
@@ -18,9 +26,8 @@ namespace ByteDev.Common
             foreach (var item in items)
             {
                 if (sb.Length > 0)
-                {
                     sb.Append("&");
-                }
+                
                 sb.Append(item.key + "=" + item.value);
             }
 
