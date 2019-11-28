@@ -1,6 +1,6 @@
 # Release Notes
 
-## 7.0.0 - ?
+## 7.0.0 - 28 Nov 2019
 
 Breaking changes:
 * A number of public method renames in DateTimeExtensions.
