@@ -75,6 +75,13 @@ namespace ByteDev.Common
             return source.Replace($"{{{tokenName}}}", value.ToString());
         }
 
+        /// <summary>
+        /// Replaces the format item in a specified string with the string representation of a corresponding object in a specified array.
+        /// </summary>
+        /// <param name="source">String to format.</param>
+        /// <param name="args">Arguments to format the string with.</param>
+        /// <returns>A copy of <paramref name="source">format</paramref> in which the format items have been replaced by the string representation of the corresponding objects in <paramref name="args">args</paramref>.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         public static string FormatWith(this string source, params object[] args)
         {
             if(source == null)

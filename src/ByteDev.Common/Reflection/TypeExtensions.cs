@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace ByteDev.Common.Reflection
 {
-    public static class TypeExtensions
+    internal static class TypeExtensions
     {
         internal static PropertyInfo GetPropertyInfoOrThrow(this Type source, string propertyName)
         {

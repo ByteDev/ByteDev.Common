@@ -2,6 +2,9 @@
 
 namespace ByteDev.Common.Xml
 {
+    /// <summary>
+    /// Represents encoder of XML strings.
+    /// </summary>
     public class XmlEncoder
     {
         private static class XmlPredefinedEntities
@@ -13,12 +16,15 @@ namespace ByteDev.Common.Xml
             public const string GreaterThan = "&gt;";
         }
 
+        /// <summary>
+        /// XML encode a string.
+        /// </summary>
+        /// <param name="value">The string to encode.</param>
+        /// <returns>XML encoded string.</returns>
         public static string Encode(string value)
         {
             if (string.IsNullOrEmpty(value))
-            {
                 return value;
-            }
 
             var builder = new StringBuilder();
 
@@ -48,35 +54,36 @@ namespace ByteDev.Common.Xml
                         break;
                 }
             }
+
             return builder.ToString();
         }
 
         /// <summary>
-        /// Remove illegal XML characters from a string. For more info see this http://stackoverflow.com/a/12469826/52360
+        /// Remove illegal XML characters from <paramref name="value" />.
         /// </summary>
+        /// <param name="value">String to sanitize.</param>
+        /// <returns>Sanitized string.</returns>
         public static string SanitizeForXml(string value)
         {
             if (string.IsNullOrEmpty(value))
-            {
                 return value;
-            }
 
             var buffer = new StringBuilder(value.Length);
 
             foreach (char c in value)
             {
                 if (IsLegalXmlChar(c))
-                {
                     buffer.Append(c);
-                }
             }
 
             return buffer.ToString();
         }
 
         /// <summary>
-        /// Whether a given character is allowed by XML 1.0.
+        /// Indicates whether a given character is allowed by XML 1.0.
         /// </summary>
+        /// <param name="character">Character to check.</param>
+        /// <returns>True if the character is legal; otherwise returns false.</returns>
         public static bool IsLegalXmlChar(int character)
         {
             return
@@ -84,9 +91,9 @@ namespace ByteDev.Common.Xml
                     character == 0x9 /* == '\t' == 9   */          ||
                     character == 0xA /* == '\n' == 10  */          ||
                     character == 0xD /* == '\r' == 13  */          ||
-                    (character >= 0x20 && character <= 0xD7FF) ||
-                    (character >= 0xE000 && character <= 0xFFFD) ||
-                    (character >= 0x10000 && character <= 0x10FFFF)
+                    character >= 0x20 && character <= 0xD7FF ||
+                    character >= 0xE000 && character <= 0xFFFD ||
+                    character >= 0x10000 && character <= 0x10FFFF
                 );
         }
     }

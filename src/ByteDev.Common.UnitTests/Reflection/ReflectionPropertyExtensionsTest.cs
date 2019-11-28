@@ -62,7 +62,7 @@ namespace ByteDev.Common.UnitTests.Reflection
 
                 Assert.That(result, Is.EqualTo(ClassWithStaticProperty.Name));
             }
-
+            
             [Test]
             public void WhenClassHasNoStaticProperty_ThenThrowException()
             {
