@@ -698,9 +698,7 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenIsNull_ThenReturnNull()
             {
-                const string sut = null;
-
-                var result = sut.ReplaceLastOccurrence("John", "Peter");
+                var result = StringExtensions.ReplaceLastOccurrence(null, "John", "Peter");
 
                 Assert.That(result, Is.Null);
             }

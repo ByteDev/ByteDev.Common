@@ -170,6 +170,14 @@ namespace ByteDev.Common.UnitTests
         public class ToLongOrDefault
         {
             [Test]
+            public void WhenNull_ThenReturnDefault()
+            {
+                var result = StringToExtensions.ToLongOrDefault(null, 1);
+
+                Assert.That(result, Is.EqualTo(1));
+            }
+
+            [Test]
             public void WhenValidString_ThenReturnAsLong()
             {
                 const string sut = "123";
@@ -183,16 +191,6 @@ namespace ByteDev.Common.UnitTests
             public void WhenInvalidString_ThenReturnDefault()
             {
                 const string sut = "A123";
-
-                var result = sut.ToLongOrDefault(1);
-
-                Assert.That(result, Is.EqualTo(1));
-            }
-
-            [Test]
-            public void WhenNull_ThenReturnDefault()
-            {
-                const string sut = null;
 
                 var result = sut.ToLongOrDefault(1);
 

@@ -19,22 +19,22 @@ namespace ByteDev.Common.UnitTests.Serialization.Xml
             };
         }
 
-        protected XmlDataSerializer CreateSut()
+        private static XmlDataSerializer CreateSut()
         {
             return new XmlDataSerializer();
         }
 
-        protected XmlDataSerializer CreateSut(XmlDataSerializer.SerializerType type)
+        private static XmlDataSerializer CreateSut(XmlDataSerializer.SerializerType type)
         {
             return new XmlDataSerializer(type);
         }
 
-        protected string SerializeToXml(object obj)
+        private string SerializeToXml(object obj)
         {
             return CreateSut().Serialize(obj);
         }
 
-        protected string SerializeToXml(object obj, XmlDataSerializer.SerializerType type)
+        private string SerializeToXml(object obj, XmlDataSerializer.SerializerType type)
         {
             return CreateSut(type).Serialize(obj);
         }
