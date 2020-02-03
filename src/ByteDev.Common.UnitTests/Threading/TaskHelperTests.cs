@@ -37,7 +37,7 @@ namespace ByteDev.Common.UnitTests.Threading
 
                 var tasks = new List<Task>
                 {
-                    Task.Run(() => throw new Exception("Exception 1")),
+                    Task.Run(() => throw new InvalidOperationException("Exception 1")),
                     Task.Run(() => counter++)
                 };
 
@@ -52,8 +52,8 @@ namespace ByteDev.Common.UnitTests.Threading
             {
                 var tasks = new List<Task>
                 {
-                    Task.Run(() => throw new Exception("Exception 1")),
-                    Task.Run(() => throw new Exception("Exception 2"))
+                    Task.Run(() => throw new InvalidOperationException("Exception 1")),
+                    Task.Run(() => throw new InvalidOperationException("Exception 2"))
                 };
 
                 var ex = Assert.ThrowsAsync<AggregateException>(() => TaskHelper.WhenAllTasksAsync(tasks));
@@ -91,7 +91,7 @@ namespace ByteDev.Common.UnitTests.Threading
                 {
                     Task.Run(() =>
                     {
-                        throw new Exception("Exception 1");
+                        throw new InvalidOperationException("Exception 1");
                         return 1;
                     }),
                     Task.Run(() =>
@@ -114,12 +114,12 @@ namespace ByteDev.Common.UnitTests.Threading
                 {
                     Task.Run(() =>
                     {
-                        throw new Exception("Exception 1");
+                        throw new InvalidOperationException("Exception 1");
                         return 1;
                     }),
                     Task.Run(() =>
                     {
-                        throw new Exception("Exception 2");
+                        throw new InvalidOperationException("Exception 2");
                         return 2;
                     })
                 };

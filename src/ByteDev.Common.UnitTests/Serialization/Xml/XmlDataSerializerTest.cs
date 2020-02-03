@@ -19,24 +19,24 @@ namespace ByteDev.Common.UnitTests.Serialization.Xml
             };
         }
 
-        protected XmlDataSerializer CreateClassUnderTest()
+        protected XmlDataSerializer CreateSut()
         {
             return new XmlDataSerializer();
         }
 
-        protected XmlDataSerializer CreateClassUnderTest(XmlDataSerializer.SerializerType type)
+        protected XmlDataSerializer CreateSut(XmlDataSerializer.SerializerType type)
         {
             return new XmlDataSerializer(type);
         }
 
         protected string SerializeToXml(object obj)
         {
-            return CreateClassUnderTest().Serialize(obj);
+            return CreateSut().Serialize(obj);
         }
 
         protected string SerializeToXml(object obj, XmlDataSerializer.SerializerType type)
         {
-            return CreateClassUnderTest(type).Serialize(obj);
+            return CreateSut(type).Serialize(obj);
         }
  
         [TestFixture]
@@ -45,7 +45,7 @@ namespace ByteDev.Common.UnitTests.Serialization.Xml
             [Test]
             public void WhenArgIsNull_ThenThrowException()
             {
-                Assert.Throws<ArgumentNullException>(() => CreateClassUnderTest().Serialize(null));
+                Assert.Throws<ArgumentNullException>(() => CreateSut().Serialize(null));
             }
 
             [Test]
@@ -53,7 +53,7 @@ namespace ByteDev.Common.UnitTests.Serialization.Xml
             {
                 var product = new Product { Code = "code1", Name = "name1" };
 
-                var result = CreateClassUnderTest().Serialize(product);
+                var result = CreateSut().Serialize(product);
 
                 Assert.That(result.IsXml(), Is.True);
             }
@@ -63,7 +63,7 @@ namespace ByteDev.Common.UnitTests.Serialization.Xml
             {
                 var product = new ProductXml { Code = "code1", Name = "name1" };
 
-                var result = CreateClassUnderTest().Serialize(product);
+                var result = CreateSut().Serialize(product);
 
                 Assert.That(result.IsXml(), Is.True);
             }
@@ -73,7 +73,7 @@ namespace ByteDev.Common.UnitTests.Serialization.Xml
             {
                 ProductXml[] products = GetProductXmls();
 
-                var result = CreateClassUnderTest().Serialize(products);
+                var result = CreateSut().Serialize(products);
 
                 Assert.That(result.IsXml(), Is.True);
             }
@@ -83,7 +83,7 @@ namespace ByteDev.Common.UnitTests.Serialization.Xml
             {
                 var product = new ProductContract { Code = "code1", Name = "name1" };
 
-                var result = CreateClassUnderTest(XmlDataSerializer.SerializerType.DataContract).Serialize(product);
+                var result = CreateSut(XmlDataSerializer.SerializerType.DataContract).Serialize(product);
 
                 Assert.That(result.IsXml(), Is.True);
             }
@@ -95,7 +95,7 @@ namespace ByteDev.Common.UnitTests.Serialization.Xml
             [Test]
             public void WhenArgIsNull_ThenThrowException()
             {
-                Assert.Throws<ArgumentNullException>(() => CreateClassUnderTest().Deserialize<ProductXml>(null));
+                Assert.Throws<ArgumentNullException>(() => CreateSut().Deserialize<ProductXml>(null));
             }
 
             [Test]
@@ -105,7 +105,7 @@ namespace ByteDev.Common.UnitTests.Serialization.Xml
 
                 var xml = SerializeToXml(customer);
 
-                Assert.Throws<InvalidOperationException>(() => CreateClassUnderTest().Deserialize<Product>(xml));
+                Assert.Throws<InvalidOperationException>(() => CreateSut().Deserialize<Product>(xml));
             }
 
             [Test]
@@ -115,7 +115,7 @@ namespace ByteDev.Common.UnitTests.Serialization.Xml
 
                 var xml = SerializeToXml(product);
 
-                var result = CreateClassUnderTest().Deserialize<Product>(xml);
+                var result = CreateSut().Deserialize<Product>(xml);
 
                 Assert.That(result.Code, Is.EqualTo(product.Code));
                 Assert.That(result.Name, Is.EqualTo(product.Name));
@@ -128,7 +128,7 @@ namespace ByteDev.Common.UnitTests.Serialization.Xml
 
                 var xml = SerializeToXml(products);
 
-                var result = CreateClassUnderTest().Deserialize<ProductXml[]>(xml);
+                var result = CreateSut().Deserialize<ProductXml[]>(xml);
 
                 Assert.That(result.Length, Is.EqualTo(products.Length));
             }
@@ -140,7 +140,7 @@ namespace ByteDev.Common.UnitTests.Serialization.Xml
 
                 var xml = SerializeToXml(product, XmlDataSerializer.SerializerType.DataContract);
 
-                var result = CreateClassUnderTest(XmlDataSerializer.SerializerType.DataContract).Deserialize<ProductContract>(xml);
+                var result = CreateSut(XmlDataSerializer.SerializerType.DataContract).Deserialize<ProductContract>(xml);
 
                 Assert.That(result.Code, Is.EqualTo(product.Code));
                 Assert.That(result.Name, Is.EqualTo(product.Name));

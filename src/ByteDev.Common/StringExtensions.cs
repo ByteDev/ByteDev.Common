@@ -24,9 +24,13 @@ namespace ByteDev.Common
         /// <param name="source">The string to perform the operation on.</param>
         /// <param name="value">The starting string.</param>
         /// <returns>String with the starting string <paramref name="value" /> removed if it starts with it.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is null.</exception>
         public static string RemoveStartsWith(this string source, string value)
         {
+            if(source == null)
+                throw new ArgumentNullException(nameof(source));
+
             if(value == null)
                 throw new ArgumentNullException(nameof(value));
 
@@ -45,9 +49,13 @@ namespace ByteDev.Common
         /// <param name="source">The string to perform the operation on.</param>
         /// <param name="value">The ending string.</param>
         /// <returns>String with the ending string <paramref name="value" /> removed if it ends with it.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is null.</exception>
         public static string RemoveEndsWith(this string source, string value)
         {
+            if(source == null)
+                throw new ArgumentNullException(nameof(source));
+
             if (value == null)
                 throw new ArgumentNullException(nameof(value));
 

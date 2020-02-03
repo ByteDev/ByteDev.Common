@@ -5,7 +5,7 @@ namespace ByteDev.Common.Xml
     /// <summary>
     /// Represents encoder of XML strings.
     /// </summary>
-    public class XmlEncoder
+    public static class XmlEncoder
     {
         private static class XmlPredefinedEntities
         {

@@ -21,7 +21,7 @@ namespace ByteDev.Common.Threading
 
             try
             {
-                await allTask;
+                await allTask.ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -48,7 +48,7 @@ namespace ByteDev.Common.Threading
 
             try
             {
-                return await allTask;
+                return await allTask.ConfigureAwait(false);
             }
             catch (Exception)
             {

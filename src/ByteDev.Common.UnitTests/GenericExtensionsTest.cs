@@ -36,9 +36,7 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenIsReferencingNull_ThenReturnDefault()
             {
-                DummySerializable sut = null;
-
-                var result = sut.CloneSerializable();
+                var result = GenericExtensions.CloneSerializable(null as DummySerializable);
 
                 Assert.IsNull(result);
             }
@@ -96,9 +94,7 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
             {
-                object sut = null;
-
-                Assert.Throws<ArgumentNullException>(() => sut.InvokeMethod("MyProtectedInternalMethod"));
+                Assert.Throws<ArgumentNullException>(() => GenericExtensions.InvokeMethod(null as object, "MyProtectedInternalMethod"));
             }
 
             [Test]
@@ -195,9 +191,7 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenSourceIsNull_ThenThrowException()
             {
-                string sut = null;
-
-                Assert.Throws<ArgumentNullException>(() => sut.In("John"));
+                Assert.Throws<ArgumentNullException>(() => GenericExtensions.In(null, "John"));
             }
 
             [Test]

@@ -1,5 +1,6 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/github/bytedev/ByteDev.Common?branch=master&svg=true)](https://ci.appveyor.com/project/bytedev/ByteDev-Common/branch/master)
 [![NuGet Package](https://img.shields.io/nuget/v/ByteDev.Common.svg)](https://www.nuget.org/packages/ByteDev.Common)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7f16915e8aad427caaa9b079dd00c446)](https://www.codacy.com/manual/ByteDev/ByteDev.Common?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ByteDev/ByteDev.Common&amp;utm_campaign=Badge_Grade)
 
 # ByteDev.Common
 

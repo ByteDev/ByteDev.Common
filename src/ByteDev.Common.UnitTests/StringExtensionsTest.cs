@@ -12,9 +12,7 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenIsNull_ThenReturnZero()
             {
-                string sut = null;
-
-                var result = sut.SafeLength();
+                var result = StringExtensions.SafeLength(null);
 
                 Assert.That(result, Is.EqualTo(0));
             }
@@ -34,6 +32,12 @@ namespace ByteDev.Common.UnitTests
         public class RemoveStartsWith : StringExtensionsTest
         {
             private const string Sut = "My name is John";
+
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => StringExtensions.RemoveStartsWith(null, "M"));
+            }
 
             [Test]
             public void WhenValueIsNull_ThenThrowException()
@@ -78,6 +82,12 @@ namespace ByteDev.Common.UnitTests
         public class RemoveEndsWith : StringExtensionsTest
         {
             private const string Sut = "My name is John";
+
+            [Test]
+            public void WhenSourceIsNull_ThenThrowException()
+            {
+                Assert.Throws<ArgumentNullException>(() => StringExtensions.RemoveEndsWith(null, "M"));
+            }
 
             [Test]
             public void WhenValueIsNull_ThenThrowException()

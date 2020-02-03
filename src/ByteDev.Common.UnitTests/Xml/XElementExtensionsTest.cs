@@ -11,7 +11,7 @@ namespace ByteDev.Common.UnitTests.Xml
     {
         protected const string DoesntExistElement = "Address";
 
-        public XElement CreateClassUnderTest()
+        private static XElement CreateSut()
         {
             const string xml =
                 @"<Records>
@@ -35,7 +35,7 @@ namespace ByteDev.Common.UnitTests.Xml
             [SetUp]
             public void SetUp()
             {
-                _sut = CreateClassUnderTest();
+                _sut = CreateSut();
             }
 
             [Test]
@@ -63,7 +63,7 @@ namespace ByteDev.Common.UnitTests.Xml
             [SetUp]
             public void SetUp()
             {
-                _sut = CreateClassUnderTest();
+                _sut = CreateSut();
             }
 
             [Test]
@@ -89,7 +89,7 @@ namespace ByteDev.Common.UnitTests.Xml
             [SetUp]
             public void SetUp()
             {
-                _sut = CreateClassUnderTest();
+                _sut = CreateSut();
             }
 
             [Test]
@@ -117,7 +117,7 @@ namespace ByteDev.Common.UnitTests.Xml
             [SetUp]
             public void SetUp()
             {
-                _sut = CreateClassUnderTest();
+                _sut = CreateSut();
             }
 
             [Test]

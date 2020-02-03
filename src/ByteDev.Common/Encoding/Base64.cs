@@ -8,7 +8,7 @@ namespace ByteDev.Common.Encoding
     /// <summary>
     /// Represents a set of base64 related operations.
     /// </summary>
-    public class Base64
+    public static class Base64
     {
         /// <summary>
         /// The possible valid chars in a base64 encoded string.

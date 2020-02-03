@@ -36,21 +36,20 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenNull_ThenReturnTrue()
             {
-                const string sut = null;
-                Assert.That(sut.IsNullOrEmpty(), Is.True);
+                Assert.That((null as string).IsNullOrEmpty(), Is.True);
             }
 
             [Test]
             public void WhenEmpty_ThenReturnTrue()
             {
-                var sut = string.Empty;
-                Assert.That(sut.IsNullOrEmpty(), Is.True);
+                Assert.That(string.Empty.IsNullOrEmpty(), Is.True);
             }
 
             [Test]
             public void WhenIsNotNullOrEmpty_ThenReturnTrue()
             {
-                var sut = "a";
+                const string sut = "a";
+
                 Assert.That(sut.IsNullOrEmpty(), Is.False);
             }
         }
@@ -61,21 +60,20 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenNull_ThenReturnFalse()
             {
-                const string sut = null;
-                Assert.That(sut.IsNotNullOrEmpty(), Is.False);
+                Assert.That((null as string).IsNotNullOrEmpty(), Is.False);
             }
 
             [Test]
             public void WhenEmpty_ThenReturnFalse()
             {
-                var sut = string.Empty;
-                Assert.That(sut.IsNotNullOrEmpty(), Is.False);
+                Assert.That(string.Empty.IsNotNullOrEmpty(), Is.False);
             }
 
             [Test]
             public void WhenNotNullOrEmpty_ThenReturnTrue()
             {
                 const string sut = "test";
+
                 Assert.That(sut.IsNotNullOrEmpty(), Is.True);
             }
         }
@@ -158,9 +156,7 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenIsNull_ThenReturnFalse()
             {
-                const string sut = null;
-
-                var result = sut.IsXml();
+                var result = (null as string).IsXml();
 
                 Assert.That(result, Is.False);
             }
@@ -168,9 +164,7 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenIsEmpty_ThenReturnFalse()
             {
-                var sut = string.Empty;
-
-                var result = sut.IsXml();
+                var result = string.Empty.IsXml();
 
                 Assert.That(result, Is.False);
             }
