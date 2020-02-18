@@ -29,12 +29,12 @@ namespace ByteDev.Common.UnitTests.Serialization.Xml
             return new XmlDataSerializer(type);
         }
 
-        private string SerializeToXml(object obj)
+        private static string SerializeToXml(object obj)
         {
             return CreateSut().Serialize(obj);
         }
 
-        private string SerializeToXml(object obj, XmlDataSerializer.SerializerType type)
+        private static string SerializeToXml(object obj, XmlDataSerializer.SerializerType type)
         {
             return CreateSut(type).Serialize(obj);
         }
@@ -155,8 +155,9 @@ namespace ByteDev.Common.UnitTests.Serialization.Xml
 
     public class Product
     {
-        public string Code;
-        public string Name;
+        public string Code { get; set; }
+
+        public string Name { get; set; }
     }
 
     [XmlRoot("product")]

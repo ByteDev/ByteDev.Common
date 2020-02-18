@@ -7,7 +7,7 @@ namespace ByteDev.Common.Threading
     /// <summary>
     /// Represents a set of operations to help when using Tasks.
     /// </summary>
-    public class TaskHelper
+    public static class TaskHelper
     {
         /// <summary>
         /// Performs WhenAll on collection of tasks and throws an AggregateException

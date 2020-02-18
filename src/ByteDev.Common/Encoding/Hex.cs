@@ -6,7 +6,7 @@ namespace ByteDev.Common.Encoding
     /// <summary>
     /// Represents a set of Hex related operations.
     /// </summary>
-    public class Hex
+    public static class Hex
     {
         /// <summary>
         /// Converts <paramref name="bytes" /> to a hex encoded string.

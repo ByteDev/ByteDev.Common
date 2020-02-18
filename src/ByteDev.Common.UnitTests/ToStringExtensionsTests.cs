@@ -83,7 +83,7 @@ namespace ByteDev.Common.UnitTests
                 Assert.That(result, Is.EqualTo("Ids: { 3, 15 }"));
             }
 
-            private string Act(IEnumerable<int> values)
+            private static string Act(IEnumerable<int> values)
             {
                 return new ToStringHelper().ToString("Ids", values);
             }

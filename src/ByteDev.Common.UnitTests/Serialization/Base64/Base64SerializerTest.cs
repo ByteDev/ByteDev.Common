@@ -7,7 +7,7 @@ namespace ByteDev.Common.UnitTests.Serialization.Base64
     [TestFixture]
     public class Base64SerializerTest
     {
-        private Base64Serializer CreateClassUnderTest()
+        private static Base64Serializer CreateSut()
         {
             return new Base64Serializer();
         }
@@ -17,9 +17,9 @@ namespace ByteDev.Common.UnitTests.Serialization.Base64
             return new Product { Name = "John Smith" };
         }
 
-        private string SerializeToBase64<T>(T obj)
+        private static string SerializeToBase64<T>(T obj)
         {
-            return CreateClassUnderTest().Serialize(obj);
+            return CreateSut().Serialize(obj);
         }
 
         [TestFixture]
@@ -30,7 +30,7 @@ namespace ByteDev.Common.UnitTests.Serialization.Base64
             [SetUp]
             public void SetUp()
             {
-                _sut = CreateClassUnderTest();
+                _sut = CreateSut();
             }
 
             [Test]
@@ -61,7 +61,7 @@ namespace ByteDev.Common.UnitTests.Serialization.Base64
             [SetUp]
             public void SetUp()
             {
-                _sut = CreateClassUnderTest();
+                _sut = CreateSut();
             }
 
             [Test]
