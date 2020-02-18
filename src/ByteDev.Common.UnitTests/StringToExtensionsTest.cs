@@ -80,9 +80,7 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenIsNull_ThenReturnEmptyCollection()
             {
-                const string sut = null;
-
-                var result = sut.ToLines();
+                var result = StringToExtensions.ToLines(null);
 
                 Assert.That(result.Count(), Is.EqualTo(0));
             }
@@ -114,9 +112,7 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenNull_ThenReturnEmptyArray()
             {
-                const string sut = null;
-
-                var result = sut.ToByteArray();
+                var result = StringToExtensions.ToByteArray(null);
 
                 Assert.That(result.Length, Is.EqualTo(0));
             }
@@ -158,9 +154,7 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenNull_ThenReturnDefault()
             {
-                const string sut = null;
-
-                var result = sut.ToIntOrDefault(1);
+                var result = StringToExtensions.ToIntOrDefault(null, 1);
 
                 Assert.That(result, Is.EqualTo(1));
             }

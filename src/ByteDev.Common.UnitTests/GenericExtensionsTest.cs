@@ -78,13 +78,13 @@ namespace ByteDev.Common.UnitTests
             [Serializable]
             public class DummySerializable
             {
-                public string Name;
+                public string Name { get; set; }
             }
 
             [Serializable]
             public class DummySerializableComplex
             {
-                public DummySerializable InnerDummy;
+                public DummySerializable InnerDummy { get; set; }
             }
         }
 

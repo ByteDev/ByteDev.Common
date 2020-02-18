@@ -163,19 +163,19 @@ namespace ByteDev.Common.UnitTests.Serialization.Xml
     public class ProductXml
     {
         [XmlElement("code")]
-        public string Code;
+        public string Code { get; set; }
 
         [XmlElement("name")]
-        public string Name;
+        public string Name { get; set; }
     }
 
     [DataContract]
     public class ProductContract
     {
         [DataMember] 
-        public string Code;
+        public string Code { get; set; }
 
         [DataMember] 
-        public string Name;
+        public string Name { get; set; }
     }
 }

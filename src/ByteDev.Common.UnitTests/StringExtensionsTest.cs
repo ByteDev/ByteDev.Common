@@ -325,9 +325,7 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenIsNull_ThenReturnNull()
             {
-                string sut = null;
-
-                var result = sut.RemoveWhiteSpace();
+                var result = StringExtensions.RemoveWhiteSpace(null);
 
                 Assert.That(result, Is.Null);
             }
@@ -421,9 +419,7 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenIsNull_ThenReturnNull()
             {
-                const string sut = null;
-                
-                var result = sut.RemoveBracketedText();
+                var result = StringExtensions.RemoveBracketedText(null);
 
                 Assert.That(result, Is.Null);
             }
@@ -660,9 +656,7 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenIsNull_ThenReturnNull()
             {
-                const string sut = null;
-
-                var result = sut.LeftWithInnerEllipsis(10);
+                var result = StringExtensions.LeftWithInnerEllipsis(null, 10);
 
                 Assert.That(result, Is.Null);
             }
@@ -740,9 +734,7 @@ namespace ByteDev.Common.UnitTests
             [Test]
             public void WhenIsNull_ThenReturnEmpty()
             {
-                const string sut = null;
-
-                var result = sut.SafeSubstring(0, 5);
+                var result = StringExtensions.SafeSubstring(null, 0, 5);
 
                 Assert.That(result, Is.Empty);
             }
