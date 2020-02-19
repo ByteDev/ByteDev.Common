@@ -1,21 +1,25 @@
-#addin nuget:?package=Cake.Incubator&version=5.1.0
-#tool "nuget:?package=NUnit.Runners&version=2.7.1"
-#tool "nuget:?package=GitVersion.CommandLine&version=5.0.1"
+#addin "nuget:?package=Cake.Incubator&version=5.1.0"
+#tool "nuget:?package=NUnit.ConsoleRunner&version=3.10.0"
+#tool "nuget:?package=GitVersion.CommandLine&version=5.1.3"
 #load "ByteDev.Utilities.cake"
+
+var solutionName = "ByteDev.Common";
+var projName = "ByteDev.Common";
+
+var solutionFilePath = "../" + solutionName + ".sln";
+var nuspecFilePath = projName + ".nuspec";
 
 var nugetSources = new[] {"https://api.nuget.org/v3/index.json"};
 
 var target = Argument("target", "Default");
 
-var solutionFilePath = "../src/ByteDev.Common.sln";
-
 var artifactsDirectory = Directory("../artifacts");
 var nugetDirectory = artifactsDirectory + Directory("NuGet");
-	
+
 var configuration = GetBuildConfiguration();
 
 Information("Configurtion: " + configuration);
-	
+
 
 Task("Clean")
     .Does(() =>
@@ -75,7 +79,7 @@ Task("CreateNuGetPackages")
 			OutputDirectory = nugetDirectory
 		};
                 
-		NuGetPack("../src/ByteDev.Common.nuspec", nugetSettings);
+		NuGetPack(nuspecFilePath, nugetSettings);
     });
 
    

@@ -11,10 +11,13 @@
     <copyright>Copyright 2019</copyright>
     <tags>common utility extensions reflection serialization threading time xml encoding</tags>
     <iconUrl>https://raw.githubusercontent.com/bytedev/ByteDev.Common/master/images/icon.png</iconUrl>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
   </metadata>
   <files>
-    <file src="ByteDev.Common\bin\Release\netstandard2.0\ByteDev.Common.dll" target="lib\netstandard2.0" />
-    <file src="ByteDev.Common\bin\Release\netstandard2.0\ByteDev.Common.xml" target="lib\netstandard2.0" />
+    <file src="..\src\ByteDev.Common\bin\Release\netstandard2.0\ByteDev.Common.dll" target="lib\netstandard2.0" />
+    <file src="..\src\ByteDev.Common\bin\Release\netstandard2.0\ByteDev.Common.xml" target="lib\netstandard2.0" />
     <file src="..\images\icon.png" target="images\" />
   </files>
 </package>

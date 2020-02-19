@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ByteDev.Common\ByteDev.Common.csproj" />
+    <ProjectReference Include="..\..\src\ByteDev.Common\ByteDev.Common.csproj" />
   </ItemGroup>
 
 </Project>
