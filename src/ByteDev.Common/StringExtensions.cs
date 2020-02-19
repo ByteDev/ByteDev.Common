@@ -292,6 +292,20 @@ namespace ByteDev.Common
             return Regex.Matches(source, Regex.Escape(value)).Count;
         }
 
+        
+        /// <summary>
+        /// Returns an obscured string.
+        /// </summary>
+        /// <param name="source">The string to perform the operation on.</param>
+        /// <param name="beginCharsToShow">Chars to show from the left.</param>
+        /// <param name="endCharsToShow">Chars to show from the right.</param>
+        /// <returns>String with obscured characters.</returns>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
+        public static string Obscure(this string source, int beginCharsToShow, int endCharsToShow)
+        {
+            return Obscure(source, beginCharsToShow, endCharsToShow, '*');
+        }
+
         /// <summary>
         /// Returns an obscured string.
         /// </summary>
@@ -301,7 +315,7 @@ namespace ByteDev.Common
         /// <param name="obscureChar">Obscure character.</param>
         /// <returns>String with obscured characters.</returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="source" /> is null.</exception>
-        public static string Obscure(this string source, int beginCharsToShow, int endCharsToShow, char obscureChar = '*')
+        public static string Obscure(this string source, int beginCharsToShow, int endCharsToShow, char obscureChar)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
@@ -311,7 +325,7 @@ namespace ByteDev.Common
 
             for (var pos = 0; pos < len; pos++)
             {
-                sb.Append(pos < beginCharsToShow || len - pos <= endCharsToShow ? source[pos] : '*');
+                sb.Append(pos < beginCharsToShow || len - pos <= endCharsToShow ? source[pos] : obscureChar);
             }
 
             return sb.ToString();

@@ -122,9 +122,19 @@ namespace ByteDev.Common.Time
         /// Returns the <see cref="T:System.DateTime" /> in a sortable format.
         /// </summary>
         /// <param name="source">The <see cref="T:System.DateTime" /> to return as a string.</param>
+        /// <returns>String representing the <see cref="T:System.DateTime" />.</returns>
+        public static string ToStringSortable(this DateTime source)
+        {
+            return ToStringSortable(source, string.Empty);
+        }
+
+        /// <summary>
+        /// Returns the <see cref="T:System.DateTime" /> in a sortable format.
+        /// </summary>
+        /// <param name="source">The <see cref="T:System.DateTime" /> to return as a string.</param>
         /// <param name="delimiter">Optional delimiter string between <see cref="T:System.DateTime" /> parts.</param>
         /// <returns>String representing the <see cref="T:System.DateTime" />.</returns>
-        public static string ToStringSortable(this DateTime source, string delimiter = "")
+        public static string ToStringSortable(this DateTime source, string delimiter)
         {
             return source.ToString($"yyyy{delimiter}MM{delimiter}dd{delimiter}hh{delimiter}mm{delimiter}ss");
         }

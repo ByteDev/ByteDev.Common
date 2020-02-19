@@ -1,5 +1,18 @@
 # Release Notes
 
+## 7.1.0 - ?? February 2020
+
+Breaking changes:
+- (None)
+
+New features:
+- (None)
+
+Bug fixes:
+- StringExtensions.Obscure now uses the provided obscure character.
+- StringExtensions.Obscure now uses overloaded method rather than optional param.
+- DateTimeExtensions.ToStringSortable now uses overloaded method rather than optional param.
+
 ## 7.0.0 - 28 Nov 2019
 
 Breaking changes:
@@ -8,8 +21,8 @@ Breaking changes:
 * Removed DateTimeExtensions.ConvertLocalToUtcDateTime().
 * FuncTimer is now in ByteDev.Common.Threading namespace.
 * ReflectionAttributeExtensions now has clearer methods for Type, Object and MemberInfo for HasAttribute method.
-* TakeFirstWithEllipsis is now LeftWithEllipsis
-* InnerTruncate is now LeftWithInnerEllipsis
+* TakeFirstWithEllipsis is now LeftWithEllipsis.
+* InnerTruncate is now LeftWithInnerEllipsis.
 
 New features:
 * (None)

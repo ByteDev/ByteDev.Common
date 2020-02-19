@@ -150,7 +150,7 @@ namespace ByteDev.Common.UnitTests.Serialization.Xml
 
     public class Customer
     {
-        public string Name;
+        public string Name { get; set; }
     }
 
     public class Product
