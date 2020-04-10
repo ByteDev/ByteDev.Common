@@ -23,7 +23,7 @@ namespace ByteDev.Common.UnitTests.Exceptions
             {
                 var sut = new ArgumentNullOrEmptyException("myArg");
 
-                Assert.That(sut.Message, Is.EqualTo("Value cannot be null or empty.\r\nParameter name: myArg"));
+                Assert.That(sut.Message, Is.EqualTo("Value cannot be null or empty. (Parameter 'myArg')"));
                 Assert.That(sut.ParamName, Is.EqualTo("myArg"));
             }
 
@@ -43,7 +43,7 @@ namespace ByteDev.Common.UnitTests.Exceptions
             {
                 var sut = new ArgumentNullOrEmptyException("myArg", "some message.");
 
-                Assert.That(sut.Message, Is.EqualTo("some message.\r\nParameter name: myArg"));
+                Assert.That(sut.Message, Is.EqualTo("some message. (Parameter 'myArg')"));
                 Assert.That(sut.ParamName, Is.EqualTo("myArg"));
             }
         }
