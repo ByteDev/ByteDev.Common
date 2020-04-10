@@ -1,17 +1,19 @@
 # Release Notes
 
-## 7.1.0 - ?? February 2020
+## 8.0.0 - ?? April 2020
 
 Breaking changes:
-- (None)
+- Removed Base64 class (see ByteDev.Base64 package)
+- Removed Base64Serializer class (see ByteDev.Base64 package)
 
 New features:
 - (None)
 
-Bug fixes:
+Bug fixes / internal changes:
 - StringExtensions.Obscure now uses the provided obscure character.
 - StringExtensions.Obscure now uses overloaded method rather than optional param.
 - DateTimeExtensions.ToStringSortable now uses overloaded method rather than optional param.
+
 
 ## 7.0.0 - 28 Nov 2019
 
