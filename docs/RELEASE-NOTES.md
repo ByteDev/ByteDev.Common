@@ -6,6 +6,7 @@ Breaking changes:
 - Removed Base64 class (see ByteDev.Base64 package)
 - Removed Base64Serializer class (see ByteDev.Base64 package)
 - Removed all types in Time namespace (see ByteDev.Time package)
+- Removed String extension methods and ToStrinHelper (see ByteDev.Strings package)
 
 New features:
 - (None)

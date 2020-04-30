@@ -38,7 +38,6 @@ As well as functionality covering the following namespaces:
 - Reflection
 - Serialization
 - Threading
-- Time
 - Xml
 
 As of version 6.0.0 the Collections namespace has been moved to package: ByteDev.Collections.
