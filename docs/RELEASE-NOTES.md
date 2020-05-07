@@ -1,12 +1,13 @@
 # Release Notes
 
-## 8.0.0 - ?? April 2020
+## 8.0.0 - ?? May 2020
 
 Breaking changes:
 - Removed Base64 class (see ByteDev.Base64 package)
 - Removed Base64Serializer class (see ByteDev.Base64 package)
 - Removed all types in Time namespace (see ByteDev.Time package)
 - Removed String extension methods and ToStrinHelper (see ByteDev.Strings package)
+- Removed Reflection extension methods (see ByteDev.Reflection)
 
 New features:
 - (None)
