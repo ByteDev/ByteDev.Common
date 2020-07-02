@@ -22,12 +22,6 @@ Releases follow semantic versioning.
 
 Full details of the release notes can be viewed on [GitHub](https://github.com/ByteDev/ByteDev.Common/blob/master/docs/RELEASE-NOTES.md).
 
-## Code
-
-The repo can be cloned from git bash:
-
-`git clone https://github.com/ByteDev/ByteDev.Common`
-
 ## Usage
 
 Common has classes covering general extensions such as String, Enum, Guid, Uri, etc.  
