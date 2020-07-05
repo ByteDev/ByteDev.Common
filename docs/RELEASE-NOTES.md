@@ -9,6 +9,7 @@ Breaking changes:
 - Removed String extension methods and ToStrinHelper (see ByteDev.Strings package)
 - Removed Reflection extension methods (see ByteDev.Reflection package)
 - Removed Hex class (see ByteDev.Encoding package)
+- Removed exceptions (see ByteDev.Exceptions package)
 
 New features:
 - (None)
