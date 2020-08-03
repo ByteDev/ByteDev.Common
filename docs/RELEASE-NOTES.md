@@ -3,13 +3,16 @@
 ## 8.0.0 - ?? July 2020
 
 Breaking changes:
-- Removed Base64 class (see ByteDev.Encoding package)
-- Removed Base64Serializer class (see ByteDev.Encoding package)
-- Removed all types in Time namespace (see ByteDev.Time package)
-- Removed String extension methods and ToStrinHelper (see ByteDev.Strings package)
-- Removed Reflection extension methods (see ByteDev.Reflection package)
-- Removed Hex class (see ByteDev.Encoding package)
-- Removed exceptions (see ByteDev.Exceptions package)
+- Removed Base64 class (see `ByteDev.Encoding` package)
+- Removed Base64Serializer class (see `ByteDev.Encoding` package)
+- Removed all types in Time namespace (see `ByteDev.Time` package)
+- Removed String extension methods and ToStrinHelper (see `ByteDev.Strings` package)
+- Removed Reflection extension methods (see `ByteDev.Reflection` package)
+- Removed Hex class (see `ByteDev.Encoding` package)
+- Removed exceptions (see `ByteDev.Exceptions` package)
+- Removed Guid extension methods (see `ByteDev.ValueTypes` package)
+- Removed Enum related functionality (see `ByteDev.ValueTypes` package)
+- Removed Uri related functionality (see `ByteDev.ResourceIdentifier` package)
 
 New features:
 - (None)
