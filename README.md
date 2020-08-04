@@ -13,6 +13,7 @@ Common is a collection of generic utility methods.
 - `ByteDev.Exceptions` (includes the custom exceptions)
 - `ByteDev.ResourceIdentifier` (includes Uri related functionality)
 - `ByteDev.ValueTypes` (includes Guid and Enum related functionality)
+- `ByteDev.Xml` (includes XML related functionality, including serialization)
 
 It is strongly recommended you stop using this package and use any of the respective packages above instead.
 
@@ -23,3 +24,9 @@ ByteDev.Common has been written as a .NET Standard 2.0 library, so you can consu
 ByteDev.Common is hosted as a package on nuget.org.  To install from the Package Manager Console in Visual Studio run:
 
 `Install-Package ByteDev.Common`
+
+## Release Notes
+
+Releases follow semantic versioning.
+
+Full details of the release notes can be viewed on [GitHub](https://github.com/ByteDev/ByteDev.Xml/blob/master/docs/RELEASE-NOTES.md).
